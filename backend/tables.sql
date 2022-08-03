@@ -2,7 +2,7 @@
 CREATE TABLE users_signo(
 id VARCHAR(255) PRIMARY KEY,
 nickname VARCHAR(255) UNIQUE NOT NULL,
-role ENUM ("NORMAL", "ADMIN") NOT NULL DEFAULT "NORMAL"
+password VARCHAR(255) NOT NULL
 );
 
 SELECT * FROM users_signo;
@@ -27,4 +27,4 @@ CREATE TABLE answers_polls_signo(
 );
 
 SELECT * FROM answers_polls_signo;
-DROP TABLE answer_polls_signo;
+DROP TABLE answers_polls_signo;
