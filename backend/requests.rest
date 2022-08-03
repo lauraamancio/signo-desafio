@@ -13,3 +13,14 @@ Content-Type: application/json
     "nickname": "kristen", 
     "password": "1234567"
 }
+###
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2NmQzNGQzLTcyNjMtNGE3NC1iNDZmLTJhMmZlOWYzNWUzZSIsImlhdCI6MTY1OTU1ODY3MX0.Zd_ihkxjTKze45y1RzLzS_tGrH7oLiSld14BdbvA9YM
+POST http://localhost:3003/polls
+Content-Type: application/json
+authorization: {{token}}
+
+{
+    "title": "Taurinos são preguiçosos?", 
+    "start_date": "04/08/2022",
+    "end_date": ""
+}
