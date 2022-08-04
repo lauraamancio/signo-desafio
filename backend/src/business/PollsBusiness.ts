@@ -31,13 +31,13 @@ export default class PollsBusiness {
             if(findTitle){
                 throw new Error("This poll already exists")
             }
-    
+            // || end_dateFormat.setUTCHours(0, 0, 0, 0) < Date.now() || end_dateFormat.setUTCHours(0, 0, 0, 0) < start_dateFormat.setUTCHours(0, 0, 0, 0)
             const [dayStart, monthStart, yearStart] = start_date.split("/")
             const start_dateFormat = new Date(`${yearStart}-${monthStart}-${dayStart}`)
             const [dayEnd, monthEnd, yearEnd] = end_date.split("/")
             const end_dateFormat = new Date(`${yearEnd}-${monthEnd}-${dayEnd}`)
     
-            if(start_dateFormat.getTime() < Date.now() || end_dateFormat.getTime() < Date.now() || end_dateFormat.getTime() <= start_dateFormat.getTime()){
+            if(start_dateFormat.setUTCHours(0, 0, 0, 0) < new Date().setUTCHours(0, 0, 0, 0) || end_dateFormat.setUTCHours(0, 0, 0, 0) < new Date().setUTCHours(0, 0, 0, 0) || end_dateFormat.setUTCHours(0, 0, 0, 0) < start_dateFormat.setUTCHours(0, 0, 0, 0)){
                 throw new Error("Invalid date")
             }
     

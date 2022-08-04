@@ -23,7 +23,7 @@ CREATE TABLE answers_polls_signo(
     FOREIGN KEY (poll_id) REFERENCES polls_signo(id),
     user_id VARCHAR(255) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users_signo(id),
-    answer ENUM ("CONCORDO", "CONCORDO PARCIALMENTE", "DISCORDO", "NÃO QUERO ME COMPROMETER") NOT NULL
+    answer ENUM ("CONCORDO", "CONCORDO PARCIALMENTE", "DISCORDO", "NÃO SEI OPINAR") NOT NULL
 );
 
 SELECT * FROM answers_polls_signo;
