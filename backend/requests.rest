@@ -1,3 +1,4 @@
+### SIGN UP
 POST http://localhost:3003/users/signup
 Content-Type: application/json
 
@@ -5,22 +6,30 @@ Content-Type: application/json
     "nickname": "kristen", 
     "password": "1234567"
 }
-###
+### LOGIN
 POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "nickname": "kristen", 
+    "nickname": "brendinha", 
     "password": "1234567"
 }
-###
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2NmQzNGQzLTcyNjMtNGE3NC1iNDZmLTJhMmZlOWYzNWUzZSIsImlhdCI6MTY1OTU1ODY3MX0.Zd_ihkxjTKze45y1RzLzS_tGrH7oLiSld14BdbvA9YM
+### CREATE POLL
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1NmVjZTkwLWVjYmEtNGVjZC04NWY0LWFhYTk3YzAzNjc4MiIsImlhdCI6MTY1OTYyNDcwMn0.f0giFY_Y51V9aJEVfWRbRdswHaObRCeQ4amxlug6BlQ
 POST http://localhost:3003/polls
 Content-Type: application/json
 authorization: {{token}}
 
 {
-    "title": "Taurinos são preguiçosos?", 
+    "title": "oO céu é azul", 
     "start_date": "04/08/2022",
-    "end_date": ""
+    "end_date": "04/08/2022"
+}
+### ANSWER POLL
+POST http://localhost:3003/poll/a56ece90-ecba-4ecd-85f4-aaa97c036782/65a88246-60ca-49ce-8885-ed02f3a1ee28
+Content-Type: application/json
+authorization: {{token}}
+
+{
+    "answer": "CONCORDO PARCIALMENTE"
 }
