@@ -1,4 +1,4 @@
-import { InputEditPollDTO, PollsModel } from "./../models/PollsModel";
+import { InputEditPollBDDTO, InputEditPollDTO, PollsModel } from "./../models/PollsModel";
 import { BaseDatabase } from "./BaseDatabase";
 
 export default class PollsDatabase extends BaseDatabase {
@@ -38,7 +38,7 @@ export default class PollsDatabase extends BaseDatabase {
         }
     }
 
-    public async editPoll(input: InputEditPollDTO, id: string): Promise<void> {
+    public async editPoll(input: InputEditPollBDDTO, id: string): Promise<void> {
         try {
             await this.getConnection()
             .update(input)

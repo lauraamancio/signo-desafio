@@ -35,3 +35,8 @@ export interface InputEditPollDTO {
     start_date?: string,
     end_date?: string
 }
+export interface InputEditPollBDDTO {
+    title?: string,
+    start_date?: Date,
+    end_date?: Date
+}
