@@ -1,4 +1,4 @@
-import { InputEditPollDTO } from "./../models/PollsModel";
+import { InputEditPollBDDTO, InputEditPollDTO } from "./../models/PollsModel";
 import PollsDatabase from "../data/PollsDatabase";
 import { InputPollDTO, PollsModel } from "../models/PollsModel";
 import { Authenticator } from "../services/Autheticator";
@@ -62,18 +62,14 @@ export default class PollsBusiness {
 
       await this.pollsData.createPoll(newPoll);
     } catch (error: any) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     }
   }
 
   public async editPoll(input: InputEditPollDTO, token: string, id: string) {
     try {
-      const { title } = input 
-      let { start_date, end_date } = input
-
-      if(!title || !start_date || !end_date){
-        throw new Error("Empty parameter")
-        }
+      const { title } = input;
+      let { start_date, end_date } = input;
 
       if (!token) {
         throw new Error("Token not found, please check login");
@@ -88,77 +84,84 @@ export default class PollsBusiness {
         throw new Error("Poll not found");
       }
 
-      if(start_date || end_date) {
-        const [dayStart, monthStart, yearStart] = start_date.split("/")
+      const newInput: InputEditPollBDDTO = {
+        title,
+      };
+
+      if (start_date) {
+        const [dayStart, monthStart, yearStart] = start_date.split("/");
         const start_dateFormat = new Date(
           `${yearStart}-${monthStart}-${dayStart}`
         );
-        const [dayEnd, monthEnd, yearEnd] = end_date.split("/")
-        const end_dateFormat = new Date(`${yearEnd}-${monthEnd}-${dayEnd}`);
-  
+
         if (
           start_dateFormat.setUTCHours(0, 0, 0, 0) <
-            new Date().setUTCHours(0, 0, 0, 0) ||
-          end_dateFormat.setUTCHours(0, 0, 0, 0) <
-            new Date().setUTCHours(0, 0, 0, 0) ||
-          end_dateFormat.setUTCHours(0, 0, 0, 0) <
-            start_dateFormat.setUTCHours(0, 0, 0, 0)
+          new Date().setUTCHours(0, 0, 0, 0)
         ) {
-          throw new Error("Invalid date")
-        }else{
-          return {end_date: end_dateFormat, start_date: start_dateFormat}
+          throw new Error("Invalid date");
         }
-      }
-      const newInput = {
-        title,
-        start_date,
-        end_date
+        newInput.start_date = start_dateFormat;
       }
 
-      await this.pollsData.editPoll(newInput, id)
+      if (end_date) {
+        const [dayStart, monthStart, yearStart] = end_date.split("/");
+        const end_dateFormat = new Date(
+          `${yearStart}-${monthStart}-${dayStart}`
+        );
+
+        if (
+          end_dateFormat.setUTCHours(0, 0, 0, 0) <
+          new Date().setUTCHours(0, 0, 0, 0)
+        ) {
+          throw new Error("Invalid date");
+        }
+        newInput.end_date = end_dateFormat;
+      }
+
+      await this.pollsData.editPoll(newInput, id);
     } catch (error: any) {
-        throw new Error(error.message)
+      throw new Error(error.message);
     }
   }
 
-  public async deletePoll(id: string, token: string){
+  public async deletePoll(id: string, token: string) {
     try {
-      if(!id || !token) {
-        throw new Error("Missing id or token")
+      if (!id || !token) {
+        throw new Error("Missing id or token");
       }
 
-      const validId = await this.pollsData.findByID(id)
-      if(!validId) {
-        throw new Error("Poll not found")
+      const validId = await this.pollsData.findByID(id);
+      if (!validId) {
+        throw new Error("Poll not found");
       }
 
-      const validToken = this.authenticator.getData(token)
-      if(!validToken){
-        throw new Error("Invalid toke, please check login")
+      const validToken = this.authenticator.getData(token);
+      if (!validToken) {
+        throw new Error("Invalid toke, please check login");
       }
 
-      await this.pollsData.deletePoll(id)
+      await this.pollsData.deletePoll(id);
     } catch (error: any) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     }
   }
 
   public async getAllPolls(token: string) {
     try {
-      if(!token){
-        throw new Error("Token not found")
+      if (!token) {
+        throw new Error("Token not found");
       }
-  
-      const validToken = this.authenticator.getData(token)
-      if(!validToken.id) {
-        throw new Error("Invalid token, verify login")
+
+      const validToken = this.authenticator.getData(token);
+      if (!validToken.id) {
+        throw new Error("Invalid token, verify login");
       }
-  
-      const result = await this.pollsData.getAllPolls()
-      
-      return result
+
+      const result = await this.pollsData.getAllPolls();
+
+      return result;
     } catch (error: any) {
-      throw new Error(error.message) 
+      throw new Error(error.message);
     }
   }
 }

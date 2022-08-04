@@ -28,3 +28,7 @@ CREATE TABLE answers_polls_signo(
 
 SELECT * FROM answers_polls_signo;
 DROP TABLE answers_polls_signo;
+
+SELECT COUNT("CONCORDO") AS votes FROM answers_polls_signo
+WHERE poll_id = "eb3d83ed-f8b5-4e3f-a911-1e64eca59197"
+GROUP BY poll_id;

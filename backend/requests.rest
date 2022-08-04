@@ -15,7 +15,7 @@ Content-Type: application/json
     "password": "1234567"
 }
 ### CREATE POLL
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1NmVjZTkwLWVjYmEtNGVjZC04NWY0LWFhYTk3YzAzNjc4MiIsImlhdCI6MTY1OTYyNDcwMn0.f0giFY_Y51V9aJEVfWRbRdswHaObRCeQ4amxlug6BlQ
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1NmVjZTkwLWVjYmEtNGVjZC04NWY0LWFhYTk3YzAzNjc4MiIsImlhdCI6MTY1OTY0Mjg2OX0.HBsPNHtLGtouS3M7hi6gSQj11cINL7_zyJRxjliGIBE
 POST http://localhost:3003/polls
 Content-Type: application/json
 authorization: {{token}}
@@ -26,20 +26,21 @@ authorization: {{token}}
     "end_date": "08/08/2022"
 }
 ### ANSWER POLL
-POST http://localhost:3003/poll/a56ece90-ecba-4ecd-85f4-aaa97c036782/65a88246-60ca-49ce-8885-ed02f3a1ee28
+POST http://localhost:3003/poll/a56ece90-ecba-4ecd-85f4-aaa97c036782/eb3d83ed-f8b5-4e3f-a911-1e64eca59197
 Content-Type: application/json
 authorization: {{token}}
 
 {
-    "answer": "CONCORDO PARCIALMENTE"
+    "answer": "CONCORDO"
 }
 ### EDIT POLL
-PUT http://localhost:3003/poll/0c6f5375-da9b-4168-83cc-563b9969dc47
+PUT http://localhost:3003/poll/65a88246-60ca-49ce-8885-ed02f3a1ee28
 Content-Type: application/json
 authorization: {{token}}
 
 {
-    "title": "aoba"
+    "start_date": "19/08/2022",
+    "end_date": "20/09/2022"
 }
 ### DELETE POLL
 DELETE  http://localhost:3003/poll/0c6f5375-da9b-4168-83cc-563b9969dc47
