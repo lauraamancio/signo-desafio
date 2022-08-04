@@ -7,7 +7,10 @@ const userController = new UserController
 const pollController = new PollsController
 const answerController = new AnswersController
 
+app.get("/polls", pollController.getAllPolls)
 app.post("/users/signup", userController.signUp)
 app.post("/users/login", userController.login)
 app.post("/polls", pollController.createPoll)
 app.post("/poll/:user_id/:poll_id", answerController.registerAnswer)
+app.put("/poll/:poll_id", pollController.editPoll)
+app.delete("/poll/:poll_id", pollController.deletePoll)
