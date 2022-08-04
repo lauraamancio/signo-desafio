@@ -3,7 +3,7 @@ POST http://localhost:3003/users/signup
 Content-Type: application/json
 
 {
-    "nickname": "kristen", 
+    "nickname": "ana", 
     "password": "1234567"
 }
 ### LOGIN
@@ -21,9 +21,9 @@ Content-Type: application/json
 authorization: {{token}}
 
 {
-    "title": "oO céu é azul", 
+    "title": "O que você acha da administração de dDolores Ambridge no ministério?", 
     "start_date": "04/08/2022",
-    "end_date": "04/08/2022"
+    "end_date": "08/08/2022"
 }
 ### ANSWER POLL
 POST http://localhost:3003/poll/a56ece90-ecba-4ecd-85f4-aaa97c036782/65a88246-60ca-49ce-8885-ed02f3a1ee28
@@ -33,3 +33,18 @@ authorization: {{token}}
 {
     "answer": "CONCORDO PARCIALMENTE"
 }
+### EDIT POLL
+PUT http://localhost:3003/poll/0c6f5375-da9b-4168-83cc-563b9969dc47
+Content-Type: application/json
+authorization: {{token}}
+
+{
+    "title": "aoba"
+}
+### DELETE POLL
+DELETE  http://localhost:3003/poll/0c6f5375-da9b-4168-83cc-563b9969dc47
+authorization: {{token}}
+
+### GET ALL POLLS
+GET http://localhost:3003/polls
+authorization: {{token}}

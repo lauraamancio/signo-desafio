@@ -34,7 +34,7 @@ export default class UsersBusiness {
 
             const newUser = new UserModel(
                 id,
-                nickname,
+                nickname.toLowerCase(),
                 hashPass,
             )
 
