@@ -1,4 +1,5 @@
 import UserDatabse from "../data/UsersDatabase";
+import { BaseError } from "../error/ErrorBase";
 import UserModel, { InputUserDTO} from "../models/UsersModel";
 import { Authenticator } from "../services/Autheticator";
 import { HashManage } from "../services/HashManager";
@@ -17,16 +18,16 @@ export default class UsersBusiness {
             const {nickname, password} = input
 
             if(!nickname || !password){
-                throw new Error("Please fill all fields")
+                throw new BaseError(422, "Please fill all fields")
             }
 
             const registeredNickname = await this.userData.findNickname(nickname)
             if(registeredNickname){
-                throw new Error("This nickname is already registered") 
+                throw new BaseError(400, "This nickname is already registered") 
             }
 
             if(password.length < 7){
-                throw new Error("The password must have at least 7 characters")
+                throw new BaseError(400, "The password must have at least 7 characters")
             }
 
             const id: string = this.idGenerator.generate()
@@ -44,7 +45,7 @@ export default class UsersBusiness {
 
             return token
         } catch (error: any) {
-            throw new Error(error.message)
+            throw new BaseError(400, error.message)
         }
     }
 
@@ -53,24 +54,24 @@ export default class UsersBusiness {
             const {nickname, password} = input
 
             if(!nickname || !password){
-                throw new Error("Please fill all fields")
+                throw new BaseError(422, "Please fill all fields")
             }
 
             const user = await this.userData.findNickname(nickname)
             if(!user){
-                throw new Error("Nickname or passward incorrect")
+                throw new BaseError(400, "Nickname or passward incorrect")
             }
 
             const passCorrect: boolean = await this.hash.compare(password, user.getPassword())
             if(!passCorrect){
-                throw new Error("Nickname or passward incorrect")
+                throw new BaseError(400, "Nickname or passward incorrect")
             }
             const id: string = user.getId()
             const token = this.authenticator.generateToken({id})
             
             return token
         } catch (error: any) {
-            throw new Error(error.message)
+            throw new BaseError(400, error.message)
         }
     }
 }

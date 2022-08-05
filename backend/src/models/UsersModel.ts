@@ -1,3 +1,8 @@
+export interface InputUserDTO {
+    nickname: string,
+    password: string,
+}
+
 export default class UserModel {
     constructor(
         private id: string,
@@ -18,9 +23,4 @@ export default class UserModel {
     static todoUserModel(user: any): UserModel {
         return new UserModel(user.id, user.nickname, user.password)
     } 
-}
-
-export interface InputUserDTO {
-    nickname: string,
-    password: string,
 }

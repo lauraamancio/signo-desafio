@@ -1,3 +1,20 @@
+export interface InputPollDTO {
+    title: string,
+    start_date: string,
+    end_date: string
+}
+
+export interface InputEditPollDTO {
+    title?: string,
+    start_date?: string,
+    end_date?: string
+}
+export interface InputEditPollBDDTO {
+    title?: string,
+    start_date?: Date,
+    end_date?: Date
+}
+
 export class PollsModel {
     constructor(
         private id: string,
@@ -22,21 +39,4 @@ export class PollsModel {
     static todoUserModel(poll: any): PollsModel {
         return new PollsModel(poll.id, poll.title, poll.start_date, poll.end_date)
     } 
-}
-
-export interface InputPollDTO {
-    title: string,
-    start_date: string,
-    end_date: string
-}
-
-export interface InputEditPollDTO {
-    title?: string,
-    start_date?: string,
-    end_date?: string
-}
-export interface InputEditPollBDDTO {
-    title?: string,
-    start_date?: Date,
-    end_date?: Date
 }

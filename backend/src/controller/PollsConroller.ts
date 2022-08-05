@@ -66,4 +66,16 @@ export default class PollsController {
       res.send(error.message)
     }
   }
+
+  public gelPollByID = async(req: Request, res: Response) => {
+    try {
+      const id = req.params.poll_id
+      const token = req.headers.authorization as string
+
+      const result = await this.pollsBusiness.getPollById(id, token)
+      res.status(200).send(result)
+    } catch (error: any) {
+      res.send(error.message)
+    }
+  }
 }
