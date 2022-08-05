@@ -1,3 +1,4 @@
+import { BaseError } from "../error/ErrorBase";
 import { InputEditPollBDDTO, InputEditPollDTO, PollsModel } from "./../models/PollsModel";
 import { BaseDatabase } from "./BaseDatabase";
 
@@ -10,7 +11,7 @@ export default class PollsDatabase extends BaseDatabase {
             .insert(input)
             .into(this.TABLE_NAME)
         } catch (error: any) {
-            throw new Error(error.sqlmessage || error.message)
+            throw new BaseError(500, error.message)
         }
     }
 
@@ -22,7 +23,7 @@ export default class PollsDatabase extends BaseDatabase {
             .where({title})
             return result[0] && PollsModel.todoUserModel(result[0])
         } catch (error: any) {
-            throw new Error(error.sqlmessage || error.message)
+            throw new BaseError(500, error.message)
         }
     }
 
@@ -34,7 +35,7 @@ export default class PollsDatabase extends BaseDatabase {
             .where({id})
             return result[0] && PollsModel.todoUserModel(result[0])
         } catch (error: any) {
-            throw new Error(error.sqlmessage || error.message)
+            throw new BaseError(500, error.message)
         }
     }
 
@@ -45,7 +46,7 @@ export default class PollsDatabase extends BaseDatabase {
             .from(this.TABLE_NAME)
             .where({id})
         } catch (error: any) {
-            throw new Error(error.sqlmessage || error.message)
+            throw new BaseError(500, error.message)
         }
     }
 
@@ -56,7 +57,7 @@ export default class PollsDatabase extends BaseDatabase {
             .from(this.TABLE_NAME)
             .where({id})
         } catch (error: any) {
-            throw new Error(error.sqlmessage || error.message)
+            throw new BaseError(500, error.message)
         }
     }
 
@@ -67,7 +68,7 @@ export default class PollsDatabase extends BaseDatabase {
             .from(this.TABLE_NAME)
             return result
         } catch (error: any) {
-            throw new Error(error.sqlmessage || error.message)
+            throw new BaseError(500, error.message)
         }
     }
 }

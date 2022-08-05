@@ -1,3 +1,4 @@
+import { BaseError } from "../error/ErrorBase";
 import { AnswersModel } from "../models/AnswersModel";
 import { BaseDatabase } from "./BaseDatabase";
 
@@ -10,7 +11,7 @@ export default class AnswersDatabase extends BaseDatabase {
             .insert(input)
             .into(this.TABLE_NAME)
         } catch (error: any) {
-            throw new Error(error.sqlmessage || error.message)
+            throw new BaseError(500, error.message)
         }
     }
 
@@ -18,14 +19,13 @@ export default class AnswersDatabase extends BaseDatabase {
         try {
             const result = await this.getConnection()
             .select("answer")
-            .count()
-            .as("votes")
+            .count("answer as votes")
             .from(this.TABLE_NAME)
             .where({poll_id})
             .groupBy("answer")
             return result
         } catch (error: any) {
-            throw new Error(error.sqlmessage || error.message)
+            throw new BaseError(500, error.message)
         }
     }
 }

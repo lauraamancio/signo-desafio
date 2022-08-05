@@ -1,3 +1,4 @@
+import { BaseError } from "../error/ErrorBase";
 import UserModel from "../models/UsersModel";
 import { BaseDatabase } from "./BaseDatabase";
 
@@ -10,7 +11,7 @@ export default class UserDatabse extends BaseDatabase {
             .insert(input)
             .into(this.TABLE_NAME)
         } catch (error: any) {
-            throw new Error(error.sqlmessage || error.message)
+            throw new BaseError(500, error.message)
         }
     }
 
@@ -22,7 +23,7 @@ export default class UserDatabse extends BaseDatabase {
             .where({nickname})
             return result[0] && UserModel.todoUserModel(result[0])
         } catch (error: any) {
-            throw new Error(error.sqlmessage || error.message)
+            throw new BaseError(500, error.message)
         }
     }
 
@@ -34,7 +35,7 @@ export default class UserDatabse extends BaseDatabase {
             .where({id})
             return result[0] && UserModel.todoUserModel(result[0])
         } catch (error: any) {
-            throw new Error(error.sqlmessage || error.message)
+            throw new BaseError(500, error.message)
         }
     }
 }

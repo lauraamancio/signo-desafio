@@ -3,7 +3,7 @@ POST http://localhost:3003/users/signup
 Content-Type: application/json
 
 {
-    "nickname": "ana", 
+    "nickname": "roberval", 
     "password": "1234567"
 }
 ### LOGIN
@@ -50,5 +50,9 @@ GET http://localhost:3003/polls
 authorization: {{token}}
 
 ### GET VOTES
+GET http://localhost:3003/polls/votes/eb3d83ed-f8b5-4e3f-a911-1e64eca59197
+authorization: {{token}}
+
+### GET POLL BY ID
 GET http://localhost:3003/polls/eb3d83ed-f8b5-4e3f-a911-1e64eca59197
 authorization: {{token}}
