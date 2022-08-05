@@ -26,21 +26,20 @@ authorization: {{token}}
     "end_date": "08/08/2022"
 }
 ### ANSWER POLL
-POST http://localhost:3003/poll/a56ece90-ecba-4ecd-85f4-aaa97c036782/eb3d83ed-f8b5-4e3f-a911-1e64eca59197
+POST http://localhost:3003/poll/eb3d83ed-f8b5-4e3f-a911-1e64eca59197
 Content-Type: application/json
 authorization: {{token}}
 
 {
-    "answer": "CONCORDO"
+    "answer": "DISCORDO"
 }
 ### EDIT POLL
-PUT http://localhost:3003/poll/65a88246-60ca-49ce-8885-ed02f3a1ee28
+PUT http://localhost:3003/poll/eb3d83ed-f8b5-4e3f-a911-1e64eca59197
 Content-Type: application/json
 authorization: {{token}}
 
 {
-    "start_date": "19/08/2022",
-    "end_date": "20/09/2022"
+    "title": "O que você acha do governo de Dolores Umbridge em Hogwarts?"
 }
 ### DELETE POLL
 DELETE  http://localhost:3003/poll/0c6f5375-da9b-4168-83cc-563b9969dc47
@@ -48,4 +47,8 @@ authorization: {{token}}
 
 ### GET ALL POLLS
 GET http://localhost:3003/polls
+authorization: {{token}}
+
+### GET VOTES
+GET http://localhost:3003/polls/eb3d83ed-f8b5-4e3f-a911-1e64eca59197
 authorization: {{token}}

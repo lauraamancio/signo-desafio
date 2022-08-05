@@ -1,4 +1,3 @@
-import { AnswerEnum } from "./../models/AnswersModel";
 import { AnswersModel } from "../models/AnswersModel";
 import { BaseDatabase } from "./BaseDatabase";
 
@@ -15,14 +14,16 @@ export default class AnswersDatabase extends BaseDatabase {
         }
     }
 
-    public async getVotes(answer: AnswerEnum) {
+    public async getVotes(poll_id: string) {
         try {
             const result = await this.getConnection()
-            .select()
-            .count(answer)
+            .select("answer")
+            .count()
+            .as("votes")
             .from(this.TABLE_NAME)
+            .where({poll_id})
             .groupBy("answer")
-            return result[0]
+            return result
         } catch (error: any) {
             throw new Error(error.sqlmessage || error.message)
         }

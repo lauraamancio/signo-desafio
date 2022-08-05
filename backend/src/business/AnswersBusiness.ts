@@ -13,7 +13,7 @@ export default class AnswersBusiness {
         private pollData = new PollsDatabase
     ){}
 
-    public async registerAnswer(answer: AnswerEnum, user_id: string, poll_id: string, token: string): Promise<void> {
+    public async registerAnswer(answer: AnswerEnum, poll_id: string, token: string): Promise<void> {
         try {
 
             if(!token){
@@ -24,13 +24,11 @@ export default class AnswersBusiness {
                 throw new Error("Invalid token, check login")
             }
 
-            if(!answer || !user_id || !poll_id){
+            if(!answer || !poll_id){
                 throw new Error("Some parameter is missing")
             }
-            if(user_id !== validToken.id){
-                throw new Error("Token and user id doesn't match")
-            }
 
+            const user_id = validToken.id
             const validUser = await this.userData.findByID(user_id)
             if(!validUser){
                 throw new Error("User not found, check your login")
@@ -59,6 +57,31 @@ export default class AnswersBusiness {
 
             await this.answersData.registerAnswer(input)
 
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
+    }
+
+    public async getVotes(id: string, token: string) {
+        try {
+            if(!id){
+                throw new Error("Please inform a Poll ID")
+            }
+            if(!token){
+                throw new Error("Token not found, check login")
+            }
+    
+            const validPoll = await this.pollData.findByID(id)
+            if(!validPoll){
+                throw new Error("Poll not found")
+            }
+    
+            const validToken = this.authenticator.getData(token)
+            if(!validToken.id){
+                throw new Error("Invalid token, check login")
+            }
+            const result = await this.answersData.getVotes(id)
+            return result
         } catch (error: any) {
             throw new Error(error.message)
         }
