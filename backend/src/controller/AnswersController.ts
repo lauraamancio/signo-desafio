@@ -9,12 +9,23 @@ export class AnswersController {
     public registerAnswer = async(req: Request, res: Response) => {
         try {
             const {answer} = req.body
-            const user_id = req.params.user_id
             const poll_id = req.params.poll_id
             const token = req.headers.authorization as string
             
-            await this.answerBusiness.registerAnswer(answer, user_id, poll_id, token)
+            await this.answerBusiness.registerAnswer(answer, poll_id, token)
             res.status(201).send({message: "vote registered"})
+        } catch (error: any) {
+            res.send(error.message)
+        }
+    }
+    
+    public getVotes = async(req:Request, res: Response) => {
+        try {
+            const poll_id = req.params.poll_id
+            const token = req.headers.authorization as string
+
+            const result = await this.answerBusiness.getVotes(poll_id, token)
+            res.status(200).send(result)
         } catch (error: any) {
             res.send(error.message)
         }
