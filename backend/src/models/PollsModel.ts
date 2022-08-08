@@ -18,6 +18,7 @@ export interface InputEditPollBDDTO {
 export class PollsModel {
     constructor(
         private id: string,
+        private creator_id: string,
         private title: string,
         private start_date: Date,
         private end_date: Date
@@ -25,6 +26,9 @@ export class PollsModel {
 
     public getId() {
         return this.id
+    }
+    public getCreatorId() {
+        return this.creator_id
     }
     public getTitle() {
         return this.title
@@ -37,6 +41,6 @@ export class PollsModel {
     }
 
     static todoUserModel(poll: any): PollsModel {
-        return new PollsModel(poll.id, poll.title, poll.start_date, poll.end_date)
+        return new PollsModel(poll.id, poll.creator_id, poll.title, poll.start_date, poll.end_date)
     } 
 }

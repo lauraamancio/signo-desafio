@@ -2,7 +2,8 @@
 CREATE TABLE users_signo(
 id VARCHAR(255) PRIMARY KEY,
 nickname VARCHAR(255) UNIQUE NOT NULL,
-password VARCHAR(255) NOT NULL
+password VARCHAR(255) NOT NULL,
+role ENUM ("NORMAL", "ADMIN") NOT NULL DEFAULT "NORMAL"
 );
 
 SELECT * FROM users_signo;
@@ -10,6 +11,8 @@ DROP TABLE users_signo;
 
 CREATE TABLE polls_signo(
 id VARCHAR(255) PRIMARY KEY,
+creator_id VARCHAR(255) NOT NULL,
+FOREIGN KEY (creator_id) REFERENCES users_signo(id),
 title VARCHAR(255) NOT NULL UNIQUE,
 start_date DATE NOT NULL,
 end_date DATE NOT NULL

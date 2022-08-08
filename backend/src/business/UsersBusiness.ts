@@ -1,9 +1,10 @@
 import UserDatabse from "../data/UsersDatabase";
 import { BaseError } from "../error/ErrorBase";
-import UserModel, { InputUserDTO} from "../models/UsersModel";
+import UserModel, { InputUserDTO, UserRole} from "../models/UsersModel";
 import { Authenticator } from "../services/Autheticator";
 import { HashManage } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
+import { userAdmin } from "../mocks/UsersMock";
 
 export default class UsersBusiness {
     constructor(
@@ -16,6 +17,7 @@ export default class UsersBusiness {
     public signUp = async(input: InputUserDTO) => {
         try {
             const {nickname, password} = input
+            let role
 
             if(!nickname || !password){
                 throw new BaseError(422, "Please fill all fields")
@@ -30,6 +32,12 @@ export default class UsersBusiness {
                 throw new BaseError(400, "The password must have at least 7 characters")
             }
 
+            if(userAdmin.includes(nickname)){
+                role = UserRole.ADMIN
+            }else{
+                role = UserRole.NORMAL
+            }
+
             const id: string = this.idGenerator.generate()
             const hashPass: string = await this.hash.hashPassword(password)
 
@@ -37,6 +45,7 @@ export default class UsersBusiness {
                 id,
                 nickname.toLowerCase(),
                 hashPass,
+                role
             )
 
             await this.userData.signUp(newUser)

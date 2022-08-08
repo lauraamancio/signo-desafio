@@ -3,7 +3,7 @@ POST http://localhost:3003/users/signup
 Content-Type: application/json
 
 {
-    "nickname": "roberval", 
+    "nickname": "paola", 
     "password": "1234567"
 }
 ### LOGIN
@@ -11,38 +11,39 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "nickname": "brendinha", 
+    "nickname": "paola", 
     "password": "1234567"
 }
 ### CREATE POLL
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1NmVjZTkwLWVjYmEtNGVjZC04NWY0LWFhYTk3YzAzNjc4MiIsImlhdCI6MTY1OTY0Mjg2OX0.HBsPNHtLGtouS3M7hi6gSQj11cINL7_zyJRxjliGIBE
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMjQ3ODg5LTcxMDctNDM2YS1iNWIxLTM0MTYzYzM1ZGQwOSIsImlhdCI6MTY1OTk3MDA1NX0.vnCoULDMGLXBi5xZGjvAAkeHX3V2CtZAuunQhSOOqOk
+@tokenAdmin = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhMjg4ZWY2LTAyNWQtNDQ3ZC1hMzVmLTcwNjU1ZTUzZTU0MSIsImlhdCI6MTY1OTk2OTgwMX0.rhgP5zx8AxG0z4xB61iws5bDvp6A0GBUuL_QwRoyFnw
 POST http://localhost:3003/polls
 Content-Type: application/json
 authorization: {{token}}
 
 {
-    "title": "O que você acha da administração de dDolores Ambridge no ministério?", 
-    "start_date": "04/08/2022",
-    "end_date": "08/08/2022"
+    "title": "O que você acha da administração de Dolores Ambridge no ministério?", 
+    "start_date": "08/08/2022",
+    "end_date": "12/08/2022"
 }
 ### ANSWER POLL
-POST http://localhost:3003/poll/eb3d83ed-f8b5-4e3f-a911-1e64eca59197
+POST http://localhost:3003/polls/7866d555-73ed-453e-be1b-748327f6e63f
 Content-Type: application/json
 authorization: {{token}}
 
 {
-    "answer": "DISCORDO"
+    "answer": "CONCORDO"
 }
 ### EDIT POLL
-PUT http://localhost:3003/poll/eb3d83ed-f8b5-4e3f-a911-1e64eca59197
+PUT http://localhost:3003/polls/7866d555-73ed-453e-be1b-748327f6e63f
 Content-Type: application/json
 authorization: {{token}}
 
 {
-    "title": "O que você acha do governo de Dolores Umbridge em Hogwarts?"
+    "title": "O que você acha do governo da Dolores Umbridge em Hogwarts?"
 }
 ### DELETE POLL
-DELETE  http://localhost:3003/poll/0c6f5375-da9b-4168-83cc-563b9969dc47
+DELETE  http://localhost:3003/poll/7866d555-73ed-453e-be1b-748327f6e63f
 authorization: {{token}}
 
 ### GET ALL POLLS
