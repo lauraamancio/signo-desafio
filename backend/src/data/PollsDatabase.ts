@@ -1,4 +1,4 @@
-import { BaseError } from "../error/ErrorBase";
+import { BaseError } from "../error/BaseError";
 import { InputEditPollBDDTO, InputEditPollDTO, PollsModel } from "./../models/PollsModel";
 import { BaseDatabase } from "./BaseDatabase";
 

@@ -14,7 +14,7 @@ export default class PollsController {
 
       res.status(200).send(result)
     } catch (error: any) {
-      res.send(error.message)
+      res.status(error.code || 500).send({ message: error.message })
     }
   }
 
@@ -32,7 +32,7 @@ export default class PollsController {
       await this.pollsBusiness.createPoll(input, token);
       res.status(200).send({ message: `Poll ${title} created!` });
     }catch (error: any) {
-      res.send(error.message)
+      res.status(error.code || 500).send({ message: error.message })
     }
   }
 
@@ -51,7 +51,7 @@ export default class PollsController {
       await this.pollsBusiness.editPoll(input,token, id)
       res.status(200).send({message: "Poll updated successfully"})
     } catch (error: any) {
-      res.send(error.message)
+      res.status(error.code || 500).send({ message: error.message })
     }
   }
 
@@ -63,7 +63,7 @@ export default class PollsController {
       await this.pollsBusiness.deletePoll(id, token)
       res.status(200).send({message: "Poll deleted with success"})
     } catch (error: any) {
-      res.send(error.message)
+      res.status(error.code || 500).send({ message: error.message })
     }
   }
 
@@ -75,7 +75,7 @@ export default class PollsController {
       const result = await this.pollsBusiness.getPollById(id, token)
       res.status(200).send(result)
     } catch (error: any) {
-      res.send(error.message)
+      res.status(error.code || 500).send({ message: error.message })
     }
   }
 }

@@ -1,5 +1,5 @@
 import UserDatabse from "../data/UsersDatabase";
-import { BaseError } from "../error/ErrorBase";
+import { BaseError } from "../error/BaseError";
 import UserModel, { InputUserDTO, UserRole} from "../models/UsersModel";
 import { Authenticator } from "../services/Autheticator";
 import { HashManage } from "../services/HashManager";

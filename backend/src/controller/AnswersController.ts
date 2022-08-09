@@ -15,7 +15,7 @@ export class AnswersController {
             await this.answerBusiness.registerAnswer(answer, poll_id, token)
             res.status(201).send({message: "vote registered"})
         } catch (error: any) {
-            res.send(error.message)
+            res.status(error.code || 500).send({ message: error.message })
         }
     }
     
@@ -27,7 +27,7 @@ export class AnswersController {
             const result = await this.answerBusiness.getVotes(poll_id, token)
             res.status(200).send(result)
         } catch (error: any) {
-            res.send(error.message)
+            res.status(error.code || 500).send({ message: error.message })
         }
     }
 }
