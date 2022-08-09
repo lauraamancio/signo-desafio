@@ -15,7 +15,7 @@ const Header = ({rightButtonText, setRightButtonText}) => {
     const rightButtonAction = () => {
         if(token){
             logout()
-            setRightButtonText("login")
+            setRightButtonText("Login")
             goToLoginPage(navigate)
         }else{
             goToLoginPage(navigate)
