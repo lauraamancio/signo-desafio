@@ -7,8 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 
 function App() {
   const token = localStorage.getItem("token")
-  const [rightButtonText, setRightButtonText] = useState(token ? "logout" : "login")
-
+  const [rightButtonText, setRightButtonText] = useState(token ? "Logout" : "Login")
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
