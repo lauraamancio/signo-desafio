@@ -2,8 +2,10 @@ import React from "react"
 import {useNavigate} from "react-router-dom"
 import {goToAddPollPage} from "../../routes/coordinator"
 import { goToVotePage } from "../../routes/coordinator"
+import useProtectedPage from "../../hooks/UseProtectedPage"
 
 const FeedPage = () => {
+    useProtectedPage()
     const navigate = useNavigate()
     return(
         <div>

@@ -3,7 +3,7 @@ import PollsDatabase from "../data/PollsDatabase";
 import { InputPollDTO, PollsModel } from "../models/PollsModel";
 import { Authenticator } from "../services/Autheticator";
 import { IdGenerator } from "../services/IdGenerator";
-import { BaseError } from "../error/ErrorBase";
+import { BaseError } from "../error/BaseError";
 import UserDatabse from "../data/UsersDatabase";
 import { UserRole } from "../models/UsersModel";
 

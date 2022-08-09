@@ -4,7 +4,7 @@ import UserDatabse from "../data/UsersDatabase";
 import { Authenticator} from "../services/Autheticator";
 import PollsDatabase from "../data/PollsDatabase";
 import { PollsModel } from "../models/PollsModel";
-import { BaseError } from "../error/ErrorBase";
+import { BaseError } from "../error/BaseError";
 
 export default class AnswersBusiness {
     constructor(

@@ -18,7 +18,7 @@ export default class UserController {
             const token = await this.userBusiness.signUp(input)
             res.status(201).send({token})
         } catch (error: any) {
-            res.send(error.message)
+            res.status(error.code || 500).send({ message: error.message })
         }
     }
 
@@ -33,7 +33,7 @@ export default class UserController {
             const token = await this.userBusiness.login(input)
             res.status(200).send({token})
         } catch (error: any) {
-            res.send(error.message)
+            res.status(error.code || 500).send({ message: error.message })
         }
     }
 }

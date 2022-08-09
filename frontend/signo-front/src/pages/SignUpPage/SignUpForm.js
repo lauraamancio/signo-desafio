@@ -3,19 +3,17 @@ import { InputsContainer } from "./styled";
 import TextField from "@material-ui/core/TextField";
 import useForm from "../../hooks/UseForm";
 import { Button } from "@material-ui/core";
-import {login} from "../../services/user";
 import {useNavigate} from "react-router-dom"
+import {signup} from "../../services/user"
 
-const LoginForm = () => {
+const SignUpForm = () => {
   const { form, onChange, clear } = useForm({ nickname: "", password: "" })
   const navigate = useNavigate()
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-    login(form, clear, navigate)
+    signup(form, clear(), navigate)
   }
-
-
 
   return (
     <InputsContainer>
@@ -48,11 +46,11 @@ const LoginForm = () => {
           variant={"contained"}
           color={"primary"}
         >
-          Fazer Login
+          Cadastrar
         </Button>
       </form>
     </InputsContainer>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default SignUpForm;

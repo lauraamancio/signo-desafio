@@ -5,12 +5,15 @@ import { Button } from "@material-ui/core";
 import LoginForm from "./LoginForm";
 import { useNavigate } from "react-router-dom";
 import { goToSignUpPage } from "../../routes/coordinator";
+import useUnprotectedPage from "../../hooks/UseUnprotectedPage"
 
 const LoginPage = () => {
-  const navigate = useNavigate();
+  useUnprotectedPage()
+  const navigate = useNavigate()
   return (
     <MainContainer>
       <img src={logo} alt="Logo do Ministério da Magia" />
+      <h2>Login</h2>
       <LoginForm />
       <Button
         onClick={() => goToSignUpPage(navigate)}

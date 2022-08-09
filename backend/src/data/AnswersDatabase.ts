@@ -1,4 +1,4 @@
-import { BaseError } from "../error/ErrorBase";
+import { BaseError } from "../error/BaseError";
 import { AnswersModel } from "../models/AnswersModel";
 import { BaseDatabase } from "./BaseDatabase";
 
