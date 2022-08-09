@@ -6,13 +6,13 @@ import { Button } from "@material-ui/core";
 import {login} from "../../services/user";
 import {useNavigate} from "react-router-dom"
 
-const LoginForm = () => {
+const LoginForm = ({setRightButtonText}) => {
   const { form, onChange, clear } = useForm({ nickname: "", password: "" })
   const navigate = useNavigate()
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-    login(form, clear, navigate)
+    login(form, clear, navigate, setRightButtonText)
   }
 
 

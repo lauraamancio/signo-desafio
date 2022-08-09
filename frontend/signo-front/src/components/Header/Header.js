@@ -1,14 +1,30 @@
 import logo from "../../assets/logo.png"
 import { MainContainer } from "./styled";
-import {goToFeedPage} from "../../routes/coordinator"
+import {goToFeedPage, goToLoginPage} from "../../routes/coordinator"
 import {useNavigate} from "react-router-dom"
-const Header = () => {
+
+
+const Header = ({rightButtonText, setRightButtonText}) => {
     const navigate = useNavigate()
+    const token = localStorage.getItem("token")
+
+    const logout = () => {
+        localStorage.removeItem("token")
+    }
+
+    const rightButtonAction = () => {
+        if(token){
+            logout()
+            setRightButtonText("login")
+            goToLoginPage(navigate)
+        }else{
+            goToLoginPage(navigate)
+        }
+    }
     return(
         <MainContainer>
-            <div>
                 <img src = {logo} alt="logo do ministério da magia" onClick={() => goToFeedPage(navigate)}/>
-            </div>
+                <button onClick={rightButtonAction}>{rightButtonText}</button>
         </MainContainer>
     )
 }

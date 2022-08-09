@@ -7,14 +7,14 @@ import { Button } from "@material-ui/core";
 import {goBack} from "../../routes/coordinator"
 import useUnprotectedPage from "../../hooks/UseUnprotectedPage"
 
-const SignUpPage = () => {
+const SignUpPage = ({setRightButtonText}) => {
   useUnprotectedPage()
   const navigate = useNavigate();
   return (
     <MainContainer>
       <img src={logo} alt="Logo do Ministério da Magia" />
       <h2>Cadastre-se</h2>
-      <SignUpForm />
+      <SignUpForm setRightButtonText={setRightButtonText}/>
       <Button
         onClick={() => goBack(navigate)}
         type={"submit"}
