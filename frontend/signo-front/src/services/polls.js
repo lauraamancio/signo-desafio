@@ -11,3 +11,16 @@ export const createPoll = (body, clear, headers) => {
         alert(err.response.data.message)
     })
 }
+
+export const createVote = (vote, id, headers) => {
+    const body ={
+        answer: vote
+    }
+    axios.post(`${BASE_URL}/polls/${id}`, body, headers)
+    .then((res) => {
+        console.log(res.data.message)
+    })
+    .catch((err) => {
+        console.log(err.response.data.message)
+    })
+}

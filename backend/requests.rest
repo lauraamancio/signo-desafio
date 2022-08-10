@@ -51,7 +51,7 @@ GET http://localhost:3003/polls
 authorization: {{token}}
 
 ### GET VOTES
-GET http://localhost:3003/polls/votes/eb3d83ed-f8b5-4e3f-a911-1e64eca59197
+GET http://localhost:3003/polls/votes/7866d555-73ed-453e-be1b-748327f6e63f
 authorization: {{token}}
 
 ### GET POLL BY ID

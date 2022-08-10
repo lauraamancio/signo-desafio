@@ -2,7 +2,7 @@ import logo from "../../assets/logo.png"
 import { MainContainer } from "./styled";
 import {goToFeedPage, goToLoginPage} from "../../routes/coordinator"
 import {useNavigate} from "react-router-dom"
-
+import {Button} from "@material-ui/core"
 
 const Header = ({rightButtonText, setRightButtonText}) => {
     const navigate = useNavigate()
@@ -24,7 +24,7 @@ const Header = ({rightButtonText, setRightButtonText}) => {
     return(
         <MainContainer>
                 <img src = {logo} alt="logo do ministério da magia" onClick={() => goToFeedPage(navigate)}/>
-                <button onClick={rightButtonAction}>{rightButtonText}</button>
+                <Button variant={"contained"} color={"primary"}  onClick={rightButtonAction}>{rightButtonText}</Button>
         </MainContainer>
     )
 }
