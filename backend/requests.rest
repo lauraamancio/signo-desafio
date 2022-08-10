@@ -22,9 +22,9 @@ Content-Type: application/json
 authorization: {{token}}
 
 {
-    "title": "Dumbledore vem sendo um bom conselheiro?", 
-    "start_date": "08/08/2022",
-    "end_date": "12/08/2022"
+    "title": "Hermione Granger seria uma boa opção para nova diretora de Hogwarts?", 
+    "start_date": "10/08/2022",
+    "end_date": "15/08/2022"
 }
 ### ANSWER POLL
 POST http://localhost:3003/polls/7866d555-73ed-453e-be1b-748327f6e63f

@@ -1,17 +1,31 @@
 import React from "react"
 import {useNavigate} from "react-router-dom"
-import {goToAddPollPage} from "../../routes/coordinator"
 import { goToVotePage } from "../../routes/coordinator"
 import useProtectedPage from "../../hooks/UseProtectedPage"
+import useRequestData from "../../hooks/UseRequestData"
+import {BASE_URL} from "../../constants/urls"
+import { PollCard } from "./styled"
+import { Button } from "@material-ui/core";
+import CreatePoll from "./CreatePoll"
 
 const FeedPage = () => {
     useProtectedPage()
     const navigate = useNavigate()
+
+    const polls = useRequestData([], `${BASE_URL}/polls`)
+
+    const pollsCard = polls.map((poll) => {
+        return( 
+            <PollCard>
+                <h3>{poll.title}</h3>
+                <Button onClick={() => goToVotePage(navigate, poll.id)} variant={"contained"} color={"primary"}>Votar</Button>
+            </PollCard>
+        )
+    })
     return(
         <div>
-            <h1>Feed Page</h1>
-            <button onClick={() => goToAddPollPage(navigate)}> Adicionar Enquete</button>
-            <button onClick={()=> goToVotePage(navigate)}>Votar</button>
+            <CreatePoll/>
+            {pollsCard}
         </div>
     )
 }
