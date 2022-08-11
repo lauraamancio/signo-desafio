@@ -13,13 +13,14 @@ export const createPoll = (body, clear, headers) => {
     })
 }
 
-export const createVote = (vote, id, headers) => {
+export const createVote = (vote, id, headers, getVotes) => {
     const body ={
         answer: vote
     }
     axios.post(`${BASE_URL}/polls/${id}`, body, headers)
     .then((res) => {
         alert(res.data.message)
+        getVotes()
     })
     .catch((err) => {
         alert(err.response.data.message)
@@ -34,5 +35,15 @@ export const deletePoll = (id, headers, navigate) => {
     })
     .catch((err) => {
         console.log(err.response.data.message)
+    })
+}
+
+export const editPoll = (body, id, headers) => {
+    axios.put(`${BASE_URL}/polls/${id}`, body, headers)
+    .then((res) => {
+        alert(res.data.message)
+    })
+    .catch((err) => {
+        alert(err.response.data.message)
     })
 }

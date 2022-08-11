@@ -4,8 +4,8 @@ import useProtectedPage from "../../hooks/UseProtectedPage"
 import useRequestData from "../../hooks/UseRequestData"
 import {BASE_URL} from "../../constants/urls"
 import { Button } from "@material-ui/core"
-import { createVote, deletePoll } from "../../services/polls"
-import { goBack} from "../../routes/coordinator"
+import { createVote} from "../../services/polls"
+import { goBack, goToEditPage} from "../../routes/coordinator"
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import {deleteAllAnswers} from "../../services/answers"
@@ -20,28 +20,22 @@ const VotePage = () => {
         },
       }
     const params = useParams()
-    const poll = useRequestData({}, `${BASE_URL}/polls/${params.id}`)
-    const votes  = useRequestData([], `${BASE_URL}/polls/votes/${params.id}`)
+    const [poll] = useRequestData({}, `${BASE_URL}/polls/${params.id}`)
+    const [votes, getVotes]  = useRequestData([], `${BASE_URL}/polls/votes/${params.id}`)
 
     const newStartDate = new Date(poll.start_date)
     const newEndDate = new Date(poll.end_date)
     const startDateFormated = ((newStartDate.getDate())) + "/" + ((newStartDate.getMonth() + 1)) + "/" + newStartDate.getFullYear()
     const endDateFormated = ((newEndDate.getDate())) + "/" + ((newEndDate.getMonth() + 1)) + "/" + newEndDate.getFullYear()
-  
 
-    const votesCard = votes.map((vote) => {
-      return (
-        <div>
-          <p>{vote.answer}: {vote.votes} votos</p>
-        </div>
-      )
-    })
     const deleteThis = () => {
       deleteAllAnswers(params.id, headers, navigate)
     }
     const submitVote = (vote) => {
-      createVote(vote, params.id, headers)
-  }
+      createVote(vote, params.id, headers, getVotes)
+    }
+
+    const [concordo, nao_sei, concordo_parc, discordo] = votes
 
     return(
         <div>
@@ -49,22 +43,22 @@ const VotePage = () => {
             <h2>{poll && poll.title}</h2>
             <p>Início da votação: {startDateFormated}</p>
             <p>Término da votação: {endDateFormated}</p>
-            <EditIcon/>
+            <EditIcon onClick={() => goToEditPage(navigate, params.id)}/>
             <DeleteIcon onClick={deleteThis}/>
           </div>
           <div>
             <Button variant={"contained"} color={"primary"} onClick={() => submitVote("CONCORDO")}>Concordo</Button>
+            {concordo? concordo.votes : 0} votos
             <br/>
             <Button variant={"contained"} color={"primary"}  onClick={() => submitVote("CONCORDO PARCIALMENTE")}>Concordo Parcialmente</Button>
+            {concordo_parc? concordo_parc.votes : 0} votos
             <br/>
             <Button variant={"contained"} color={"primary"} onClick={() => submitVote("DISCORDO")} >Discordo</Button>
+            {discordo? discordo.votes : 0} votos
             <br/>
             <Button variant={"contained"} color={"primary"} onClick={() => submitVote("NÃO SEI OPINAR")}>Não sei opinar</Button>
+            {nao_sei? nao_sei.votes : 0} votos
             <br/>
-          </div>
-          <div>
-            <h3>Tabela de votação:</h3>
-            {votesCard}
           </div>
           <Button variant={"text"} color={"primary"} onClick={() => {goBack(navigate)}}>Voltar</Button>
         </div>

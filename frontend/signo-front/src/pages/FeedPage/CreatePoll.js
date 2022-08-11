@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import { createPoll } from "../../services/polls";
 
-const CreatePoll = () => {
+const CreatePoll = (getPolls) => {
   const { form, onChange, clear } = useForm({
     title: "",
     start_date: "",
@@ -19,7 +19,7 @@ const CreatePoll = () => {
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-    createPoll(form,clear,headers)
+    createPoll(form,clear,headers, getPolls)
   };
 
   return (
