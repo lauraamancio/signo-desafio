@@ -16,7 +16,7 @@ export default class AnswersBusiness {
 
     public async registerAnswer(answer: AnswerEnum, poll_id: string, token: string): Promise<void> {
         try {
-
+            console.log(answer)
             if(!token){
                 throw new BaseError(404, "Token not found, please check login")
             }
