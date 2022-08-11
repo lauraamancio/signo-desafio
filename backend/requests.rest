@@ -27,12 +27,12 @@ authorization: {{token}}
     "end_date": "15/08/2022"
 }
 ### ANSWER POLL
-POST http://localhost:3003/polls/7866d555-73ed-453e-be1b-748327f6e63f
+POST http://localhost:3003/polls/693a0c4e-ff40-4f70-8b35-3ba9c0f3a309
 Content-Type: application/json
 authorization: {{token}}
 
 {
-    "answer": "CONCORDO"
+    "answer": "CONCORDO PARCIALMENTE"
 }
 ### EDIT POLL
 PUT http://localhost:3003/polls/2356ed56-0187-4185-9a82-a16bbdbd0d4f
@@ -43,7 +43,7 @@ authorization: {{token}}
     "start_date": "09/08/2022"
 }
 ### DELETE POLL
-DELETE  http://localhost:3003/poll/7866d555-73ed-453e-be1b-748327f6e63f
+DELETE  http://localhost:3003/poll/2356ed56-0187-4185-9a82-a16bbdbd0d4f
 authorization: {{token}}
 
 ### GET ALL POLLS
