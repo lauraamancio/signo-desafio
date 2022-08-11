@@ -29,7 +29,7 @@ export const createVote = (vote, id, headers) => {
 export const deletePoll = (id, headers, navigate) => {
     axios.delete(`${BASE_URL}/poll/${id}`, headers)
     .then((res) => {
-        alert(res.data.messag)
+        alert(res.data.message)
         goToFeedPage(navigate)
     })
     .catch((err) => {

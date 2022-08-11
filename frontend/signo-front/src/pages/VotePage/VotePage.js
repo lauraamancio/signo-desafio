@@ -7,7 +7,8 @@ import { Button } from "@material-ui/core"
 import { createVote, deletePoll } from "../../services/polls"
 import { goBack} from "../../routes/coordinator"
 import EditIcon from '@material-ui/icons/Edit'
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@material-ui/icons/Delete'
+import {deleteAllAnswers} from "../../services/answers"
 
 const VotePage = () => {
     useProtectedPage()
@@ -36,7 +37,7 @@ const VotePage = () => {
       )
     })
     const deleteThis = () => {
-      deletePoll(params.id, headers, navigate)
+      deleteAllAnswers(params.id, headers, navigate)
     }
     const submitVote = (vote) => {
       createVote(vote, params.id, headers)
@@ -49,7 +50,7 @@ const VotePage = () => {
             <p>Início da votação: {startDateFormated}</p>
             <p>Término da votação: {endDateFormated}</p>
             <EditIcon/>
-            <DeleteIcon onClick={deleteThis()}/>
+            <DeleteIcon onClick={deleteThis}/>
           </div>
           <div>
             <Button variant={"contained"} color={"primary"} onClick={() => submitVote("CONCORDO")}>Concordo</Button>

@@ -30,4 +30,16 @@ export class AnswersController {
             res.status(error.code || 500).send({ message: error.message })
         }
     }
+
+    public deleteAllAswers = async(req: Request, res: Response) => {
+        try {
+            const poll_id = req.params.poll_id
+            const token = req.headers.authorization as string
+
+            await this.answerBusiness.deleteAllAnswers(poll_id, token)
+            res.status(200).send({message: "deletado"})
+        } catch (error: any) {
+            res.status(error.code || 500).send({ message: error.message })
+        }
+    }
 }
