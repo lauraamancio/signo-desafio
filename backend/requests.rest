@@ -11,7 +11,7 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "nickname": "paola", 
+    "nickname": "lauraamancio", 
     "password": "1234567"
 }
 ### CREATE POLL
@@ -57,3 +57,6 @@ authorization: {{token}}
 ### GET POLL BY ID
 GET http://localhost:3003/polls/eb3d83ed-f8b5-4e3f-a911-1e64eca59197
 authorization: {{token}}
+###
+DELETE  http://localhost:3003/polls/answer/6a0e794e-6c6f-4d56-ae1e-f15042f89747
+authorization: {{tokenAdmin}}

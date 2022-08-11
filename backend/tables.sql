@@ -15,12 +15,14 @@ creator_id VARCHAR(255) NOT NULL,
 FOREIGN KEY (creator_id) REFERENCES users_signo(id),
 title VARCHAR(255) NOT NULL UNIQUE,
 start_date DATE NOT NULL,
-end_date DATE NOT NULL
+end_date DATE NOT NULL,
+answer ENUM ("CONCORDO", "CONCORDO PARCIALMENTE", "DISCORDO", "NÃO SEI OPINAR") NOT NULL
 );
 
 SELECT * FROM polls_signo;
 DROP TABLE polls_signo;
-
+DELETE FROM polls_signo
+WHERE id like "853d3cd8-27e0-496a-9a5d-0b841894834e";
 CREATE TABLE answers_polls_signo(
     poll_id VARCHAR(255) NOT NULL,
     FOREIGN KEY (poll_id) REFERENCES polls_signo(id),
@@ -31,6 +33,9 @@ CREATE TABLE answers_polls_signo(
 
 SELECT * FROM answers_polls_signo;
 DROP TABLE answers_polls_signo;
+
+DELETE from answers_polls_signo
+WHERE poll_id like "853d3cd8-27e0-496a-9a5d-0b841894834e";
 
 
 SELECT answer, COUNT(*) as votes FROM answers_polls_signo

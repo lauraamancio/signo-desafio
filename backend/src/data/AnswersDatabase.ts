@@ -28,4 +28,16 @@ export default class AnswersDatabase extends BaseDatabase {
             throw new BaseError(500, error.message)
         }
     }
+
+    public async deleteAllAnswers(poll_id: string) {
+        try {
+            await this.getConnection()
+            .delete()
+            .from(this.TABLE_NAME)
+            .where({poll_id})
+        } catch (error:any) {
+            throw new BaseError(500, error.message)
+        }
+    }
 }
+

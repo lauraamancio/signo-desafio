@@ -184,7 +184,7 @@ export default class PollsBusiness {
       }
 
       const validToken = this.authenticator.getData(token);
-      if (!validToken) {
+      if (!validToken.id) {
         throw new BaseError(401, "Invalid toke, please check login");
       }
 
