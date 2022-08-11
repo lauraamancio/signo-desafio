@@ -12,7 +12,7 @@ const FeedPage = () => {
     useProtectedPage()
     const navigate = useNavigate()
 
-    const polls = useRequestData([], `${BASE_URL}/polls`)
+    const [polls, getPolls] = useRequestData([], `${BASE_URL}/polls`)
 
     const pollsCard = polls.map((poll) => {
         return( 
@@ -22,9 +22,10 @@ const FeedPage = () => {
             </PollCard>
         )
     })
+
     return(
         <div>
-            <CreatePoll/>
+            <CreatePoll getPolls={getPolls()}/>
             {pollsCard}
         </div>
     )

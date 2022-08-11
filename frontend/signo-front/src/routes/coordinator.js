@@ -18,6 +18,10 @@ export const goToVotePage = (navigate, id) => {
     navigate(`/votacao/${id}`)
 }
 
+export const goToEditPage = (navigate, id) => {
+    navigate(`/votacao/edit/${id}`)
+}
+
 export const goBack = (navigate) => {
     navigate(-1)
 }

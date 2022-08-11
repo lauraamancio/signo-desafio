@@ -6,6 +6,7 @@ import FeedPage from "../pages/FeedPage/FeedPage"
 import LoginPage from "../pages/LoginPage/LoginPage"
 import SignUpPage from "../pages/SignUpPage/SignUpPage"
 import VotePage from "../pages/VotePage/VotePage"
+import EditPollPage from "../pages/EditPollPage/EditPollPage";
 
 const Router = ({setRightButtonText}) => {
     return (
@@ -15,6 +16,7 @@ const Router = ({setRightButtonText}) => {
                 <Route path={"/signup"} element={ <SignUpPage setRightButtonText={setRightButtonText}/> } />
                 <Route path={"/adicionar-enquete"} element={ <AddPollPage/> } />
                 <Route path={"/votacao/:id"} element={ <VotePage/> } />
+                <Route path={"/votacao/edit/:id"} element={ <EditPollPage/> } />
                 <Route path="*" element={<ErrorPage/>} />
             </Routes>
     )
