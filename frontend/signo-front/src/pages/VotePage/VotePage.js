@@ -35,7 +35,7 @@ const VotePage = () => {
       createVote(vote, params.id, headers, getVotes)
     }
 
-    const [concordo, nao_sei, concordo_parc, discordo] = votes
+    const [concordo, concordo_parc, discordo, nao_sei] = votes
 
     return(
         <div>
@@ -47,18 +47,30 @@ const VotePage = () => {
             <DeleteIcon onClick={deleteThis}/>
           </div>
           <div>
-            <Button variant={"contained"} color={"primary"} onClick={() => submitVote("CONCORDO")}>Concordo</Button>
-            {concordo? concordo.votes : 0} votos
-            <br/>
-            <Button variant={"contained"} color={"primary"}  onClick={() => submitVote("CONCORDO PARCIALMENTE")}>Concordo Parcialmente</Button>
-            {concordo_parc? concordo_parc.votes : 0} votos
-            <br/>
-            <Button variant={"contained"} color={"primary"} onClick={() => submitVote("DISCORDO")} >Discordo</Button>
-            {discordo? discordo.votes : 0} votos
-            <br/>
-            <Button variant={"contained"} color={"primary"} onClick={() => submitVote("NÃO SEI OPINAR")}>Não sei opinar</Button>
-            {nao_sei? nao_sei.votes : 0} votos
-            <br/>
+            {new Date() < newStartDate || new Date().setUTCHours(0, 0, 0, 0) > newEndDate ? 
+            <div>
+             <h3>Fora do período de votação</h3>
+             <Button variant={"contained"} color={"primary"} disabled>Concordo</Button>
+             <Button variant={"contained"} color={"primary"}  disabled>Concordo Parcialmente</Button>
+             <Button variant={"contained"} color={"primary"} disabled >Discordo</Button>
+             <Button variant={"contained"} color={"primary"} disabled>Não sei opinar</Button>
+             </div>
+             : 
+             <div>
+             <Button variant={"contained"} color={"primary"} onClick={() => submitVote("CONCORDO")}>Concordo</Button>
+             {concordo? concordo.votes : 0} votos
+             <br/>
+             <Button variant={"contained"} color={"primary"}  onClick={() => submitVote("CONCORDO PARCIALMENTE")}>Concordo Parcialmente</Button>
+             {concordo_parc? concordo_parc.votes : 0} votos
+             <br/>
+             <Button variant={"contained"} color={"primary"} onClick={() => submitVote("DISCORDO")} >Discordo</Button>
+             {discordo? discordo.votes : 0} votos
+             <br/>
+             <Button variant={"contained"} color={"primary"} onClick={() => submitVote("NÃO SEI OPINAR")}>Não sei opinar</Button>
+             {nao_sei? nao_sei.votes : 0} votos
+             <br/>
+             </div>
+            }
           </div>
           <Button variant={"text"} color={"primary"} onClick={() => {goBack(navigate)}}>Voltar</Button>
         </div>
