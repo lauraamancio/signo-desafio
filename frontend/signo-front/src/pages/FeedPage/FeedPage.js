@@ -4,7 +4,7 @@ import { goToVotePage } from "../../routes/coordinator"
 import useProtectedPage from "../../hooks/UseProtectedPage"
 import useRequestData from "../../hooks/UseRequestData"
 import {BASE_URL} from "../../constants/urls"
-import { PollCard } from "./styled"
+import { MainFeed, PollCard } from "./styled"
 import { Button } from "@material-ui/core";
 import CreatePoll from "./CreatePoll"
 
@@ -24,10 +24,10 @@ const FeedPage = () => {
     })
 
     return(
-        <div>
+        <MainFeed>
             <CreatePoll getPolls={getPolls()}/>
             {pollsCard}
-        </div>
+        </MainFeed>
     )
 }
 

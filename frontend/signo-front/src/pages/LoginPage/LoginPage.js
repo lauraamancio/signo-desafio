@@ -13,7 +13,7 @@ const LoginPage = ({setRightButtonText}) => {
   return (
     <MainContainer>
       <img src={logo} alt="Logo do Ministério da Magia" />
-      <h2>Login</h2>
+      <h2>Enquetes.LA</h2>
       <LoginForm setRightButtonText={setRightButtonText}/>
       <Button
         onClick={() => goToSignUpPage(navigate)}
