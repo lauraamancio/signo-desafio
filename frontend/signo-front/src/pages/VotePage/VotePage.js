@@ -25,8 +25,8 @@ const VotePage = () => {
 
     const newStartDate = new Date(poll.start_date)
     const newEndDate = new Date(poll.end_date)
-    const startDateFormated = ((newStartDate.getDate())) + "/" + ((newStartDate.getMonth() + 1)) + "/" + newStartDate.getFullYear()
-    const endDateFormated = ((newEndDate.getDate())) + "/" + ((newEndDate.getMonth() + 1)) + "/" + newEndDate.getFullYear()
+    const startDateFormated = ((newStartDate.getDate() +1)) + "/" + ((newStartDate.getMonth() + 1)) + "/" + newStartDate.getFullYear()
+    const endDateFormated = ((newEndDate.getDate() +1)) + "/" + ((newEndDate.getMonth() + 1)) + "/" + newEndDate.getFullYear()
 
     const deleteThis = () => {
       deleteAllAnswers(params.id, headers, navigate)
@@ -35,7 +35,7 @@ const VotePage = () => {
       createVote(vote, params.id, headers, getVotes)
     }
 
-    const [concordo, concordo_parc, discordo, nao_sei] = votes
+    const [discordo, concordo_parc, nao_sei, concordo] = votes
 
     return(
         <div>
@@ -47,7 +47,7 @@ const VotePage = () => {
             <DeleteIcon onClick={deleteThis}/>
           </div>
           <div>
-            {new Date() < newStartDate || new Date().setUTCHours(0, 0, 0, 0) > newEndDate ? 
+            {new Date().setUTCHours(0, 0, 0, 0) < newStartDate || new Date().setUTCHours(0, 0, 0, 0) > newEndDate ? 
             <div>
              <h3>Fora do período de votação</h3>
              <Button variant={"contained"} color={"primary"} disabled>Concordo</Button>

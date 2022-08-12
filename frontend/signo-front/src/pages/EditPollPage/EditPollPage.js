@@ -29,25 +29,25 @@ const EditPollPage = () => {
       end_date
   }
 
-    // let formatedEndMonth
-    // let formatedStartMonth
-    // let startMonth = new Date(poll[0].start_date).getMonth() + 1
-    // let endMonth = new Date(poll[0].end_date).getMonth() + 1
-    // if(startMonth < 10){
-    //   formatedStartMonth = "0" + startMonth
-    // }else{
-    //   formatedStartMonth = startMonth
-    // }
-    // if(endMonth < 10){
-    //   formatedEndMonth = "0" + startMonth
-    // }else{
-    //   formatedEndMonth = endMonth
-    // }
+    let formatedEndMonth
+    let formatedStartMonth
+    let startMonth = new Date(poll[0].start_date).getMonth() + 1
+    let endMonth = new Date(poll[0].end_date).getMonth() + 1
+    if(startMonth < 10){
+      formatedStartMonth = "0" + startMonth
+    }else{
+      formatedStartMonth = startMonth
+    }
+    if(endMonth < 10){
+      formatedEndMonth = "0" + startMonth
+    }else{
+      formatedEndMonth = endMonth
+    }
 
-    // const newStartDate = new Date(poll[0].start_date)
-    // const newEndDate = new Date(poll[0].end_date)
-    // const startDateFormated = ((newStartDate.getDate())) + "-" + formatedStartMonth + "-" + newStartDate.getFullYear()
-    // const endDateFormated = ((newEndDate.getDate())) + "-" + formatedEndMonth + "-" + newEndDate.getFullYear()
+    const newStartDate = new Date(poll[0].start_date)
+    const newEndDate = new Date(poll[0].end_date)
+    const startDateFormated = ((newStartDate.getDate())) + "-" + formatedStartMonth + "-" + newStartDate.getFullYear()
+    const endDateFormated = ((newEndDate.getDate())) + "-" + formatedEndMonth + "-" + newEndDate.getFullYear()
 
     const getPoll = async() => {
       await axios.get(`${BASE_URL}/polls/${params.id}`, headers)
@@ -76,7 +76,7 @@ const EditPollPage = () => {
             <form onSubmit={onSubmitForm}>
                 <TextField
                 name={"title"}
-                value={title}
+                value={title? title : poll[0].title}
                 onChange={(e) => setTitle(e.target.value)}
                 fullWidth
                 type={"text"}
@@ -87,7 +87,7 @@ const EditPollPage = () => {
                 <p>Data de início</p>
                 <TextField
                 name={"start_date"}
-                // label={startDateFormated}
+                label={startDateFormated}
                 value={start_date}
                 onChange={(e) => setStart_date(e.target.value)}
                 type={"date"}
@@ -96,7 +96,7 @@ const EditPollPage = () => {
                 <p>Data de término</p>
                 <TextField
                 name={"date"}
-                // label={endDateFormated}
+                label={endDateFormated}
                 value={end_date}
                 onChange={(e) => setEnd_date(e.target.value)}
                 type={"date"}

@@ -3,6 +3,7 @@ import useForm from "../../hooks/UseForm";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import { createPoll } from "../../services/polls";
+import { DateContainer, FormContainer } from "./styled";
 
 const CreatePoll = (getPolls) => {
   const { form, onChange, clear } = useForm({
@@ -23,7 +24,7 @@ const CreatePoll = (getPolls) => {
   };
 
   return (
-    <div>
+    <FormContainer>
       <form onSubmit={onSubmitForm}>
         <TextField
           name={"title"}
@@ -37,24 +38,29 @@ const CreatePoll = (getPolls) => {
           rows={4}
           variant="outlined"
         />
-        <p>Data de início</p>
-        <TextField
-          name={"start_date"}
-          value={form.start_date}
-          onChange={onChange}
-          required
-          type={"date"}
-          variant="outlined"
-        />
-        <p>Data de término</p>
-        <TextField
-          name={"end_date"}
-          value={form.end_date}
-          onChange={onChange}
-          required
-          type={"date"}
-          variant="outlined"
-        />
+        <DateContainer>
+          <p>Data de início</p>
+          <TextField
+            name={"start_date"}
+            value={form.start_date}
+            onChange={onChange}
+            required
+            type={"date"}
+            variant="outlined"
+          />
+        </DateContainer>
+        <DateContainer>
+          <p>Data de término</p>
+          <TextField
+            name={"end_date"}
+            value={form.end_date}
+            onChange={onChange}
+            required
+            type={"date"}
+            variant="outlined"
+          />
+        </DateContainer>
+        
         <Button
           type={"submit"}
           variant={"contained"}
@@ -63,7 +69,7 @@ const CreatePoll = (getPolls) => {
           Criar
         </Button>
       </form>
-    </div>
+    </FormContainer>
   )
 }
 

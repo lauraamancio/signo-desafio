@@ -21,5 +21,5 @@ export const signup = (body, clear, navigate, setRightButtonText) => {
     clear()
     setRightButtonText("Logout")
   })
-  .catch((err) => console.log(err.response.data.message))
+  .catch((err) => alert(err.response.data.message))
 }
