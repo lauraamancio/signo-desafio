@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import useForm from "../../hooks/UseForm";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import { createPoll } from "../../services/polls";
 import { DateContainer, FormContainer, FormDateCard } from "./styled";
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const CreatePoll = (getPolls) => {
+  const [isLoading, setIsLoading] = useState(false)
   const { form, onChange, clear } = useForm({
     title: "",
     start_date: "",
@@ -20,7 +22,7 @@ const CreatePoll = (getPolls) => {
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-    createPoll(form,clear,headers, getPolls)
+    createPoll(form,clear,headers, setIsLoading)
   };
 
   return (
@@ -67,7 +69,7 @@ const CreatePoll = (getPolls) => {
           variant={"contained"}
           color={"primary"}
         >
-          Criar
+        {isLoading? <CircularProgress color={"inherit"} size={25}/> : "Criar"}
         </Button>
       </form>
     </FormContainer>

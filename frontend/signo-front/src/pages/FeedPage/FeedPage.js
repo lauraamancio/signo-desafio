@@ -7,6 +7,7 @@ import {BASE_URL} from "../../constants/urls"
 import { MainFeed, PollCard } from "./styled"
 import { Button } from "@material-ui/core";
 import CreatePoll from "./CreatePoll"
+import Loading from "../../components/Loading/Loading"
 
 const FeedPage = () => {
     useProtectedPage()
@@ -26,7 +27,7 @@ const FeedPage = () => {
     return(
         <MainFeed>
             <CreatePoll getPolls={getPolls()}/>
-            {pollsCard}
+            {polls.length > 0 ? pollsCard : <Loading/>}
         </MainFeed>
     )
 }
