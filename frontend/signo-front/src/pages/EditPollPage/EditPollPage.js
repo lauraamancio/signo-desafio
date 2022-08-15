@@ -8,6 +8,7 @@ import useProtectdPage from "../../hooks/UseProtectedPage";
 import useRequestData from "../../hooks/UseRequestData";
 import { editPoll } from "../../services/polls";
 import { goBack } from "../../routes/coordinator";
+import { DateContainer, FormContainer, FormDateCard } from "../EditPollPage/styled";
 
 const EditPollPage = () => {
     useProtectdPage()
@@ -46,8 +47,8 @@ const EditPollPage = () => {
 
     const newStartDate = new Date(poll[0].start_date)
     const newEndDate = new Date(poll[0].end_date)
-    const startDateFormated = ((newStartDate.getDate())) + "-" + formatedStartMonth + "-" + newStartDate.getFullYear()
-    const endDateFormated = ((newEndDate.getDate())) + "-" + formatedEndMonth + "-" + newEndDate.getFullYear()
+    const startDateFormated = ((newStartDate.getDate() +1)) + "-" + formatedStartMonth + "-" + newStartDate.getFullYear()
+    const endDateFormated = ((newEndDate.getDate() +1)) + "-" + formatedEndMonth + "-" + newEndDate.getFullYear()
 
     const getPoll = async() => {
       await axios.get(`${BASE_URL}/polls/${params.id}`, headers)
@@ -71,7 +72,7 @@ const EditPollPage = () => {
       },[])
 
     return(
-        <div>
+        <FormContainer>
             <h3>Editar</h3>
             <form onSubmit={onSubmitForm}>
                 <TextField
@@ -84,24 +85,30 @@ const EditPollPage = () => {
                 rows={4}
                 variant="outlined"
                 />
-                <p>Data de início</p>
-                <TextField
-                name={"start_date"}
-                label={startDateFormated}
-                value={start_date}
-                onChange={(e) => setStart_date(e.target.value)}
-                type={"date"}
-                variant="outlined"
-                />
-                <p>Data de término</p>
-                <TextField
-                name={"date"}
-                label={endDateFormated}
-                value={end_date}
-                onChange={(e) => setEnd_date(e.target.value)}
-                type={"date"}
-                variant="outlined"
-                />
+                <FormDateCard>
+                  <DateContainer>
+                    <p>Data de início</p>
+                    <TextField
+                      name={"start_date"}
+                      label={startDateFormated}
+                      value={start_date}
+                      onChange={(e) => setStart_date(e.target.value)}
+                      type={"date"}
+                      variant="outlined"
+                    />
+                  </DateContainer>
+                  <DateContainer>
+                    <p>Data de término</p>
+                    <TextField
+                      name={"date"}
+                      label={endDateFormated}
+                      value={end_date}
+                      onChange={(e) => setEnd_date(e.target.value)}
+                      type={"date"}
+                      variant="outlined"
+                      />
+                  </DateContainer>
+                </FormDateCard>
                 <Button
                 type={"submit"}
                 variant={"contained"}
@@ -111,7 +118,7 @@ const EditPollPage = () => {
                 </Button>
              </form>
              <Button variant={"text"} color={"primary"} onClick={() => {goBack(navigate)}}>Voltar</Button>
-        </div>
+        </FormContainer>
     )
 }
 

@@ -15,6 +15,22 @@ export const PollCard = styled.div`
         margin: 2%;
         width: 20%;
     }
+
+    @media screen and (min-device-width : 1000px) {
+        display: flex;
+        flex-direction: row;
+        width: 50vw;
+    }
+`
+
+export const FormDateCard = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-device-width : 1000px){
+        flex-direction: row;
+        width: 50vw;
+    }
 `
 
 export const MainFeed = styled.div`
