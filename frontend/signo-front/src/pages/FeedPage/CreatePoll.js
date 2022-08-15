@@ -3,7 +3,7 @@ import useForm from "../../hooks/UseForm";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import { createPoll } from "../../services/polls";
-import { DateContainer, FormContainer } from "./styled";
+import { DateContainer, FormContainer, FormDateCard } from "./styled";
 
 const CreatePoll = (getPolls) => {
   const { form, onChange, clear } = useForm({
@@ -38,6 +38,7 @@ const CreatePoll = (getPolls) => {
           rows={4}
           variant="outlined"
         />
+        <FormDateCard>
         <DateContainer>
           <p>Data de início</p>
           <TextField
@@ -60,7 +61,7 @@ const CreatePoll = (getPolls) => {
             variant="outlined"
           />
         </DateContainer>
-        
+        </FormDateCard>
         <Button
           type={"submit"}
           variant={"contained"}

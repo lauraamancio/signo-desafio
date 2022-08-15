@@ -9,6 +9,7 @@ import { goBack, goToEditPage} from "../../routes/coordinator"
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import {deleteAllAnswers} from "../../services/answers"
+import { Icons, MainContainer, OutDateVote, TitleCard, VoteCard, VoteContainer } from "./styled"
 
 const VotePage = () => {
     useProtectedPage()
@@ -38,42 +39,48 @@ const VotePage = () => {
     const [discordo, concordo_parc, nao_sei, concordo] = votes
 
     return(
-        <div>
-          <div>
+        <MainContainer>
+          <TitleCard>
             <h2>{poll && poll.title}</h2>
             <p>Início da votação: {startDateFormated}</p>
             <p>Término da votação: {endDateFormated}</p>
-            <EditIcon onClick={() => goToEditPage(navigate, params.id)}/>
-            <DeleteIcon onClick={deleteThis}/>
-          </div>
-          <div>
-            {new Date().setUTCHours(0, 0, 0, 0) < newStartDate || new Date().setUTCHours(0, 0, 0, 0) > newEndDate ? 
-            <div>
+            <Icons>
+              <EditIcon onClick={() => goToEditPage(navigate, params.id)}/>
+              <DeleteIcon onClick={deleteThis}/>
+            </Icons>
+          </TitleCard>
+          <VoteContainer>
+            {new Date().setUTCHours(0, 0, 0, 0) < newStartDate || new Date().setUTCHours(0, 0, 0, 0) > newEndDate +1 ? 
+            <OutDateVote>
              <h3>Fora do período de votação</h3>
              <Button variant={"contained"} color={"primary"} disabled>Concordo</Button>
              <Button variant={"contained"} color={"primary"}  disabled>Concordo Parcialmente</Button>
              <Button variant={"contained"} color={"primary"} disabled >Discordo</Button>
              <Button variant={"contained"} color={"primary"} disabled>Não sei opinar</Button>
-             </div>
+             </OutDateVote>
              : 
              <div>
-             <Button variant={"contained"} color={"primary"} onClick={() => submitVote("CONCORDO")}>Concordo</Button>
-             {concordo? concordo.votes : 0} votos
-             <br/>
-             <Button variant={"contained"} color={"primary"}  onClick={() => submitVote("CONCORDO PARCIALMENTE")}>Concordo Parcialmente</Button>
-             {concordo_parc? concordo_parc.votes : 0} votos
-             <br/>
-             <Button variant={"contained"} color={"primary"} onClick={() => submitVote("DISCORDO")} >Discordo</Button>
-             {discordo? discordo.votes : 0} votos
-             <br/>
-             <Button variant={"contained"} color={"primary"} onClick={() => submitVote("NÃO SEI OPINAR")}>Não sei opinar</Button>
-             {nao_sei? nao_sei.votes : 0} votos
-             <br/>
+              <VoteCard>
+                <Button variant={"contained"} color={"primary"} onClick={() => submitVote("CONCORDO")}>Concordo</Button>
+                {concordo? concordo.votes : 0} votos
+              </VoteCard>
+             <VoteCard>
+                <Button variant={"contained"} color={"primary"}  onClick={() => submitVote("CONCORDO PARCIALMENTE")}>Concordo Parcialmente</Button>
+                {concordo_parc? concordo_parc.votes : 0} votos
+             </VoteCard>
+             <VoteCard>
+                <Button variant={"contained"} color={"primary"} onClick={() => submitVote("DISCORDO")} >Discordo</Button>
+                {discordo? discordo.votes : 0} votos
+             </VoteCard>
+            <VoteCard>
+              <Button variant={"contained"} color={"primary"} onClick={() => submitVote("NÃO SEI OPINAR")}>Não sei opinar</Button>
+              {nao_sei? nao_sei.votes : 0} votos
+            </VoteCard>
              </div>
             }
-          </div>
+          </VoteContainer>
           <Button variant={"text"} color={"primary"} onClick={() => {goBack(navigate)}}>Voltar</Button>
-        </div>
+        </MainContainer>
     )
 }
 
