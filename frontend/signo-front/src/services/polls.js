@@ -2,13 +2,16 @@ import axios from "axios"
 import {BASE_URL} from "../constants/urls"
 import { goToFeedPage } from "../routes/coordinator"
 
-export const createPoll = (body, clear, headers) => {
+export const createPoll = (body, clear, headers, setIsLoading) => {
+    setIsLoading(true)
     axios.post(`${BASE_URL}/polls`, body, headers)
     .then((res) => {
         clear()
-        alert(res.data)
+        setIsLoading(false)
+        alert(res.data.message)
     })
     .catch((err) => {
+        setIsLoading(false)
         alert(err.response.data.message)
     })
 }
