@@ -31,6 +31,10 @@ CREATE TABLE answers_polls_signo(
     answer ENUM ("CONCORDO", "CONCORDO PARCIALMENTE", "DISCORDO", "NÃO SEI OPINAR") NOT NULL
 );
 
+SELECT * FROM answers_polls_signo
+WHERE poll_id like "292df261-4da7-4ca3-861c-3484a24982e0"
+AND user_id like "ab13b21b-1bdf-4b52-822e-09df367771ac";
+
 SELECT * FROM answers_polls_signo;
 DROP TABLE answers_polls_signo;
 
