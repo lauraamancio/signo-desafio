@@ -26,7 +26,7 @@ Desafio FullStack proposto pela Signo Soluções Web. Nele tive que desenvolver 
 - ***Nickname de usuários ADMIN: "lauraamancio", "laura", "signo", "signo_web"***
 - ***Senha de TODOS usuário já cadastrados: 1234567***
 - No ***Cadastro Usuário***, o usuário precisa informar apenas um nickname e senha (deve conter no mínimo 7 dígitos). Faço a verificação se o nickname já está cadastrado no meu banco de dados, caso esteja, o cadastro é interrompido. Em caso de sucesso, o cadastro é relizado e um ID é atribuido ao Usuário (ID gerado pela biblioteca ***UUID***). Além disso é gerado um Token personalizado como resposta ao endpoint, este deve ser guardado no Local Storage para autenticação nos outros endpoints (Token gerado pela biblioteca ***Json web token***).
-- Ainda no ***Cadastro Usuário***, atente-se que existem 2 tipos de usuários, os ADMIN e os NORMAL. Usuários ADMIN podem editar e deletar qualquer enquete, já os NORMAL, só podem editar e deletar enquetes que eles mesmos criaram. Essa validação é feita e composta pela Token personalizado.
+- Ainda no ***Cadastro Usuário***, atente-se que existem 2 tipos de usuários, os ADMIN e os NORMAL. Usuários ADMIN podem editar e deletar qualquer enquete, já os NORMAL, só podem editar e deletar enquetes que eles mesmos criaram. Essa validação é feita e composta pelo Token personalizado.
 Os Usuários que são ADMIN estão mocados num array dentro da pasta Mocks do backend, apenas para simular essa funcionalidade em mundo real.
 - No ***Login Usuário*** usuário precisa informar seu nickname e senha, aqui também é erado um novo Token personalizado, enviado como resposta ao usuário.
 - Para ***Pegar todas as enquetes*** o usuário precisa apenas informar o Token válido que é respondido no login ou signup.
