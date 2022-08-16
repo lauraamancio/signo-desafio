@@ -59,8 +59,8 @@ Os Usuários que são ADMIN estão mocados num array dentro da pasta Mocks do ba
 - ***Desenvolvido*** em ***React*** com Mobile First.
 - ***Login***: utilizando o nickname e senha cadastrada o usuário consegue ter acesso as páginas da aplicação com proteções de autenticações (Token deve ser armazenado no Local Storage)
 - ***Cadastro***: efetua o cadastro de um novo usuário para adquirir uma autenticação (Token) e encaminha para o Feed de enquetes.
-- ***Home/ Feed***: Nele você encontra a caixa de criação de uma nova enquete e todas enquetes já criadas listadas, com um botão e "votar" ao lado.
-- ***Página de Voto***: Nela temos o título da enquete ao topo e logo abaixo as datas de início e término da votação. Caso a votação esteja fora do prazo, os botões de opções de votos são desativados. Caso ela seja uma enquete ativa, as opções de votos são ativadas e ao lado de cada opção temos a quantidade de votos de cada uma. O usuário pode votas apenas uma vez em nada enquete.
+- ***Home/ Feed***: Nele você encontra a caixa de criação de uma nova enquete e todas enquetes já criadas listadas, com um botão de "votar" ao lado.
+- ***Página de Voto***: Nela temos o título da enquete ao topo e logo abaixo as datas de início e término da votação. Caso a votação esteja fora do prazo, os botões de opções de votos são desativados. Caso ela seja uma enquete ativa, as opções de votos são ativadas e ao lado de cada opção temos a quantidade de votos de cada uma. O usuário pode votar apenas uma vez em cada enquete.
 Além disso, é nesta página que estão as opções de Editar e Deletar uma enquete. Ao deletar você é redirecionado para o Feed de enquetes (lembrando que se você for um usuário NORMAL, poderá apenas apagar as suas próprias enquetes).
 - ***Editar Enquete***: ao clicar na opção de editar, você é redirecionado para esta página. Nela os campos de título, data de início e data de término estão com as informações atuais da enquete, logo o que você mudar, será alterado (lembrando que se você for um usuário NORMAL, poderá apenas editar as suas próprias enquetes).
 
