@@ -90,3 +90,9 @@ Página de votação (dentro do período)     | Editar Enquete
 
 ## :woman_technologist: Desenvolvido por:
 [<img src="https://avatars.githubusercontent.com/u/98964160?v=4" width=115><br><sub>Laura Neves Amancio</sub>](https://www.linkedin.com/in/laura-amancio-9b3b8b168/)
+
+<br>
+
+<h2>
+  <a href='#top'>Voltar para o topo.</a>
+</h2>
