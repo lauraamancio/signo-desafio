@@ -26,8 +26,8 @@ const VotePage = () => {
 
     const newStartDate = new Date(poll.start_date)
     const newEndDate = new Date(poll.end_date)
-    const startDateFormated = ((newStartDate.getDate() +1)) + "/" + ((newStartDate.getMonth() + 1)) + "/" + newStartDate.getFullYear()
-    const endDateFormated = ((newEndDate.getDate() +1)) + "/" + ((newEndDate.getMonth() + 1)) + "/" + newEndDate.getFullYear()
+    const startDateFormated = ((newStartDate.getDate())) + "/" + ((newStartDate.getMonth() + 1)) + "/" + newStartDate.getFullYear()
+    const endDateFormated = ((newEndDate.getDate())) + "/" + ((newEndDate.getMonth() + 1)) + "/" + newEndDate.getFullYear()
 
     const deleteThis = () => {
       deleteAllAnswers(params.id, headers, navigate)
@@ -50,7 +50,7 @@ const VotePage = () => {
             </Icons>
           </TitleCard>
           <VoteContainer>
-            {new Date().setUTCHours(0, 0, 0, 0) < newStartDate || new Date().setUTCHours(0, 0, 0, 0) > newEndDate +1 ? 
+            {new Date().setUTCHours(0, 0, 0, 0) < newStartDate +1 || new Date().setUTCHours(0, 0, 0, 0) > newEndDate +1 ? 
             <OutDateVote>
              <h3>Fora do período de votação</h3>
              <Button variant={"contained"} color={"primary"} disabled>Concordo</Button>
