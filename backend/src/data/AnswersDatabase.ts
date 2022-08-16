@@ -29,6 +29,19 @@ export default class AnswersDatabase extends BaseDatabase {
         }
     }
 
+    public async getVoteByUserAndPoll(poll_id: string, user_id: string) {
+        try {
+            const result: AnswersModel[] = await this.getConnection()
+            .select()
+            .from(this.TABLE_NAME)
+            .where({poll_id})
+            .andWhere({user_id})
+            return result
+        } catch (error: any) {
+            throw new BaseError(500, error.message)
+        }
+    }
+
     public async deleteAllAnswers(poll_id: string) {
         try {
             await this.getConnection()

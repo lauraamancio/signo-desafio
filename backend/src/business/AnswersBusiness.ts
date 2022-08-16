@@ -39,6 +39,11 @@ export default class AnswersBusiness {
             if(!validPoll){
                 throw new BaseError(404, "Poll not found")
             }
+            const findAnswers: AnswersModel[] = await this.answersData.getVoteByUserAndPoll(poll_id, user_id)
+            if(findAnswers.length >= 1){
+                throw new BaseError(400, "You already voted in this Poll")
+            }
+            
             const validPollStartDate: number = validPoll.getStartDate().setUTCHours(0, 0, 0, 0)
             const validPollEndDate: number = validPoll.getEndDate().setUTCHours(0, 0, 0, 0)
 
