@@ -53,7 +53,40 @@ Os Usuários que são ADMIN estão mocados num array dentro da pasta Mocks do ba
 ## :paintbrush: FrontEnd
 <br>
 
+### ⚙️ Funcionalidades:
 
+- ***Desenvolvido*** em ***React*** com Mobile First.
+- ***Login***: utilizando o nickname e senha cadastrada o usuário consegue ter acesso as páginas da aplicação com proteções de autenticações (Token deve ser armazenado no Local Storage)
+- ***Cadastro***: efetua o cadastro de um novo usuário para adquirir uma autenticação (Token) e encaminha para o Feed de enquetes.
+- ***Home/ Feed***: Nele você encontra a caixa de criação de uma nova enquete e todas enquetes já criadas listadas, com um botão e "votar" ao lado.
+- ***Página de Voto***: Nela temos o título da enquete ao topo e logo abaixo as datas de início e término da votação. Caso a votação esteja fora do prazo, os botões de opções de votos são desativados. Caso ela seja uma enquete ativa, as opções de votos são ativadas e ao lado de cada opção temos a quantidade de votos de cada uma. O usuário pode votas apenas uma vez em nada enquete.
+Além disso, é nesta página que estão as opções de Editar e Deletar uma enquete. Ao deletar você é redirecionado para o Feed de enquetes (lembrando que se você for um usuário NORMAL, poderá apenas apagar as suas próprias enquetes).
+- ***Editar Enquete***: ao clicar na opção de editar, você é redirecionado para esta página. Nela os campos de título, data de início e data de término estão com as informações atuais da enquete, logo o que você mudar, será alterado (lembrando que se você for um usuário NORMAL, poderá apenas editar as suas próprias enquetes).
+
+### :books: Bibliotecas utilizadas:
+- [axios](https://github.com/axios/axios)
+- [react-router-dom](https://v5.reactrouter.com/)
+- [styled-components](https://styled-components.com/)
+- [material-ui](https://mui.com/pt/)
+
+### 🔗 Link Surge: 
+- Acesse o site [clicando aqui.]()
+
+### 📱 Imagens Mobile:
+
+Página de Login     | Página de Cadastro
+:------------------:|:--------------------:
+![Página de Login](https://user-images.githubusercontent.com/98964160/184971405-536b1a9d-5eee-4b15-a542-65e4a50871a9.png) | ![Página de Cadastro](https://user-images.githubusercontent.com/98964160/184972329-27ddc7d3-980f-47ef-bbbc-ca58c65df9a5.png)
+
+Feed     | Página de votação (fora do período)
+:------------------:|:--------------------:
+![Feed](https://user-images.githubusercontent.com/98964160/184972841-6c0aeea5-3f5b-4711-98f7-72f82b37b501.png) | ![Página de Votação (fora do período)](https://user-images.githubusercontent.com/98964160/184973154-75fdb70d-b04f-4ead-9aa0-a36f9ddcd02b.png)
+
+Página de votação (dentro do período)     | Editar Enquete
+:------------------:|:--------------------:
+![Página de votação (dentro do período)](https://user-images.githubusercontent.com/98964160/184973804-cb6585f5-6d50-4c32-8c2b-a7546ed8d839.png) | ![Editar Enquete](https://user-images.githubusercontent.com/98964160/184973995-c2356023-7f56-46f1-9d3a-affaaca00305.png)
+
+<br>
 
 ## :woman_technologist: Desenvolvido por:
 [<img src="https://avatars.githubusercontent.com/u/98964160?v=4" width=115><br><sub>Laura Neves Amancio</sub>](https://www.linkedin.com/in/laura-amancio-9b3b8b168/)
