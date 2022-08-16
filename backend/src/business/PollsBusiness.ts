@@ -37,12 +37,13 @@ export default class PollsBusiness {
         throw new BaseError(401, "This poll already exists");
       }
 
-      const [dayStart, monthStart, yearStart] = start_date.split("/");
-      const start_dateFormat = new Date(
+      const [dayStart, monthStart, yearStart] = start_date.split("/")
+      let start_dateFormat = new Date(
         `${yearStart}-${monthStart}-${dayStart}`
-      );
+      )
+
       const [dayEnd, monthEnd, yearEnd] = end_date.split("/");
-      const end_dateFormat = new Date(`${yearEnd}-${monthEnd}-${dayEnd}`);
+      let end_dateFormat = new Date(`${yearEnd}-${monthEnd}-${dayEnd}`);
 
       if (
         start_dateFormat.setUTCHours(0, 0, 0, 0) <
@@ -54,6 +55,9 @@ export default class PollsBusiness {
       ) {
         throw new BaseError(400, "Invalid date");
       }
+
+      start_dateFormat.setDate(start_dateFormat.getDate() +1)
+      end_dateFormat.setDate(end_dateFormat.getDate() +1)
 
       const id = this.idGenerator.generate();
 
@@ -76,6 +80,21 @@ export default class PollsBusiness {
       const { title } = input;
       let { start_date, end_date } = input;
 
+      if(start_date && end_date){
+        const [dayStart, monthStart, yearStart] = start_date.split("/");
+          const start_dateFormat = new Date(
+            `${yearStart}-${monthStart}-${dayStart}`
+          )
+          const [dayEnd, monthEnd, yearEnd] = end_date.split("/");
+          const end_dateFormat = new Date(
+            `${yearEnd}-${monthEnd}-${dayEnd}`
+          )
+
+          if(start_dateFormat > end_dateFormat || end_dateFormat < start_dateFormat){
+            throw new BaseError(400,"Invalid date")
+            
+          }
+      }
       if (!token) {
         throw new BaseError(404, "Token not found, please check login");
       }
@@ -98,23 +117,23 @@ export default class PollsBusiness {
 
         if (start_date) {
           const [dayStart, monthStart, yearStart] = start_date.split("/");
-          const start_dateFormat = new Date(
+          let start_dateFormat = new Date(
             `${yearStart}-${monthStart}-${dayStart}`
           );
-
           if (
             start_dateFormat.setUTCHours(0, 0, 0, 0) <
             new Date().setUTCHours(0, 0, 0, 0)
           ) {
             throw new BaseError(400, "Invalid date");
           }
-          newInput.start_date = start_dateFormat;
+          start_dateFormat.setDate(start_dateFormat.getDate() +1)
+          newInput.start_date = start_dateFormat
         }
 
         if (end_date) {
-          const [dayStart, monthStart, yearStart] = end_date.split("/");
-          const end_dateFormat = new Date(
-            `${yearStart}-${monthStart}-${dayStart}`
+          const [dayEnd, monthEnd, yearEnd] = end_date.split("/");
+          let end_dateFormat = new Date(
+            `${yearEnd}-${monthEnd}-${dayEnd}`
           );
 
           if (
@@ -123,6 +142,7 @@ export default class PollsBusiness {
           ) {
             throw new BaseError(400, "Invalid date");
           }
+          end_dateFormat.setDate(end_dateFormat.getDate() +1)
           newInput.end_date = end_dateFormat;
         }
 
@@ -151,9 +171,9 @@ export default class PollsBusiness {
         }
 
         if (end_date) {
-          const [dayStart, monthStart, yearStart] = end_date.split("/");
+          const [dayEnd, monthEnd, yearEnd] = end_date.split("/");
           const end_dateFormat = new Date(
-            `${yearStart}-${monthStart}-${dayStart}`
+            `${yearEnd}-${monthEnd}-${dayEnd}`
           );
 
           if (
