@@ -22,9 +22,9 @@ Content-Type: application/json
 authorization: {{token}}
 
 {
-    "title": "Hermione Granger seria uma boa opção para nova diretora de Hogwarts?", 
-    "start_date": "10/08/2022",
-    "end_date": "15/08/2022"
+    "title": "jesus me ajuda", 
+    "start_date": "16/08/2022",
+    "end_date": "16/08/2022"
 }
 ### ANSWER POLL
 POST http://localhost:3003/polls/693a0c4e-ff40-4f70-8b35-3ba9c0f3a309

@@ -23,7 +23,6 @@ const VotePage = () => {
     const params = useParams()
     const [poll] = useRequestData({}, `${BASE_URL}/polls/${params.id}`)
     const [votes, getVotes]  = useRequestData([], `${BASE_URL}/polls/votes/${params.id}`)
-
     const newStartDate = new Date(poll.start_date)
     const newEndDate = new Date(poll.end_date)
     const startDateFormated = ((newStartDate.getDate())) + "/" + ((newStartDate.getMonth() + 1)) + "/" + newStartDate.getFullYear()
@@ -50,7 +49,7 @@ const VotePage = () => {
             </Icons>
           </TitleCard>
           <VoteContainer>
-            {new Date().setUTCHours(0, 0, 0, 0) < newStartDate +1 || new Date().setUTCHours(0, 0, 0, 0) > newEndDate +1 ? 
+            {new Date() < newStartDate || new Date().setUTCHours(0,0,0,0) > newEndDate ? 
             <OutDateVote>
              <h3>Fora do período de votação</h3>
              <Button variant={"contained"} color={"primary"} disabled>Concordo</Button>
