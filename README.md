@@ -48,6 +48,7 @@ Os Usuários que são ADMIN estão mocados num array dentro da pasta Mocks do ba
 - Knex;
 - Cors;
 - UUID;
+- Json web token;
 <br>
 
 ## :paintbrush: FrontEnd
