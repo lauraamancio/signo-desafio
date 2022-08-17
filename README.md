@@ -85,7 +85,7 @@ Feed     | Página de votação (fora do período)
 
 Página de votação (dentro do período)     | Editar Enquete
 :------------------:|:--------------------:
-![Página de votação (dentro do período)](https://user-images.githubusercontent.com/98964160/184973804-cb6585f5-6d50-4c32-8c2b-a7546ed8d839.png) | ![Editar Enquete](https://user-images.githubusercontent.com/98964160/185161495-a1109dd8-019b-4206-b871-9c2ebac11f9f.png)
+![Página de votação (dentro do período)](https://user-images.githubusercontent.com/98964160/184973804-cb6585f5-6d50-4c32-8c2b-a7546ed8d839.png) | ![Editar Enquete](https://user-images.githubusercontent.com/98964160/185162509-d0ef22af-b372-4dad-b148-7d55c0dd3f0a.png)
 
 <br>
 
