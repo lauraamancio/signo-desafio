@@ -37,14 +37,15 @@ export const deletePoll = (id, headers, navigate) => {
         goToFeedPage(navigate)
     })
     .catch((err) => {
-        console.log(err.response.data.message)
+        alert(err.response.data.message)
     })
 }
 
-export const editPoll = (body, id, headers) => {
+export const editPoll = (body, id, headers, navigate) => {
     axios.put(`${BASE_URL}/polls/${id}`, body, headers)
     .then((res) => {
         alert(res.data.message)
+        goToFeedPage(navigate)
     })
     .catch((err) => {
         alert(err.response.data.message)

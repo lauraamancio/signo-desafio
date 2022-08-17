@@ -58,13 +58,13 @@ const EditPollPage = () => {
           setEnd_date(poll[0] && poll[0].end_date)
       })
       .catch((err) => {
-          console.log(err.response)
+          alert(err.response.data.message)
       })
     }
     
       const onSubmitForm = (event) => {
         event.preventDefault()
-        editPoll(body, params.id, headers)
+        editPoll(body, params.id, headers, navigate)
       }
 
       useEffect(() => {
@@ -90,7 +90,7 @@ const EditPollPage = () => {
                     <p>Data de início</p>
                     <TextField
                       name={"start_date"}
-                      label={startDateFormated}
+                      helperText={startDateFormated}
                       value={start_date}
                       onChange={(e) => setStart_date(e.target.value)}
                       type={"date"}
@@ -101,7 +101,7 @@ const EditPollPage = () => {
                     <p>Data de término</p>
                     <TextField
                       name={"date"}
-                      label={endDateFormated}
+                      helperText={endDateFormated}
                       value={end_date}
                       onChange={(e) => setEnd_date(e.target.value)}
                       type={"date"}
