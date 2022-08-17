@@ -4,11 +4,10 @@ import useProtectedPage from "../../hooks/UseProtectedPage"
 import useRequestData from "../../hooks/UseRequestData"
 import {BASE_URL} from "../../constants/urls"
 import { Button } from "@material-ui/core"
-import { createVote} from "../../services/polls"
+import { createVote, deletePoll} from "../../services/polls"
 import { goBack, goToEditPage} from "../../routes/coordinator"
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
-import {deleteAllAnswers} from "../../services/answers"
 import { Icons, MainContainer, OutDateVote, TitleCard, VoteCard, VoteContainer } from "./styled"
 
 const VotePage = () => {
@@ -29,7 +28,7 @@ const VotePage = () => {
     const endDateFormated = ((newEndDate.getDate())) + "/" + ((newEndDate.getMonth() + 1)) + "/" + newEndDate.getFullYear()
 
     const deleteThis = () => {
-      deleteAllAnswers(params.id, headers, navigate)
+      deletePoll(params.id, headers, navigate)
     }
     const submitVote = (vote) => {
       createVote(vote, params.id, headers, getVotes)

@@ -6,19 +6,20 @@ import { IdGenerator } from "../services/IdGenerator";
 import { BaseError } from "../error/BaseError";
 import UserDatabse from "../data/UsersDatabase";
 import { UserRole } from "../models/UsersModel";
+import AnswersDatabase from "../data/AnswersDatabase";
 
 export default class PollsBusiness {
   constructor(
     private idGenerator = new IdGenerator(),
     private pollsData = new PollsDatabase(),
     private authenticator = new Authenticator(),
-    private userData = new UserDatabse()
+    private userData = new UserDatabse(),
+    private answerData = new AnswersDatabase()
   ) {}
 
   public async createPoll(input: InputPollDTO, token: string) {
     try {
       const { title, start_date, end_date } = input;
-      console.log(start_date)
       if (!token) {
         throw new BaseError(404, "Token not found, please check login");
       }
@@ -161,6 +162,27 @@ export default class PollsBusiness {
           title,
         };
 
+        if(start_date && end_date) {
+          const [dayStart, monthStart, yearStart] = start_date.split("/");
+          let start_dateFormat = new Date(
+            `${yearStart}-${monthStart}-${dayStart}`
+          );
+          const [dayEnd, monthEnd, yearEnd] = end_date.split("/");
+          let end_dateFormat = new Date(
+            `${yearEnd}-${monthEnd}-${dayEnd}`
+          )
+          if (
+            start_dateFormat.setUTCHours(0, 0, 0, 0) <
+            new Date().setUTCHours(0, 0, 0, 0) || 
+            start_dateFormat.setUTCHours(0, 0, 0, 0) > 
+            end_dateFormat.setUTCHours(0,0,0,0)
+          ) {
+            throw new BaseError(400, "Invalid date");
+          }
+          newInput.start_date = start_date
+          newInput.end_date = end_date
+        }
+
         if (start_date) {
           const [dayStart, monthStart, yearStart] = start_date.split("/");
           const start_dateFormat = new Date(
@@ -220,11 +242,13 @@ export default class PollsBusiness {
 
       const user = await this.userData.findByID(validToken.id)
       if(user.getRole() === UserRole.ADMIN){
+        await this.answerData.deleteAllAnswers(id)
         await this.pollsData.deletePoll(id);
       }else{
         if(user.getId() !== validId.getCreatorId()) {
           throw new BaseError(403, "You can't delete others Poll")
         }else{
+          await this.answerData.deleteAllAnswers(id)
           await this.pollsData.deletePoll(id);
         }
       }

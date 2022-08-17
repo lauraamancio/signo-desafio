@@ -22,7 +22,7 @@ Content-Type: application/json
 authorization: {{token}}
 
 {
-    "title": "jesus me ajuda", 
+    "title": "teste", 
     "start_date": "16/08/2022",
     "end_date": "16/08/2022"
 }
@@ -43,8 +43,8 @@ authorization: {{token}}
     "start_date": "09/08/2022"
 }
 ### DELETE POLL
-DELETE  http://localhost:3003/poll/2356ed56-0187-4185-9a82-a16bbdbd0d4f
-authorization: {{token}}
+DELETE  http://localhost:3003/poll/72a2199c-f7c4-4eaf-9d86-3ac5a60a3746
+authorization: {{tokenAdmin}}
 
 ### GET ALL POLLS
 GET http://localhost:3003/polls
@@ -57,6 +57,3 @@ authorization: {{token}}
 ### GET POLL BY ID
 GET http://localhost:3003/polls/eb3d83ed-f8b5-4e3f-a911-1e64eca59197
 authorization: {{token}}
-###
-DELETE  http://localhost:3003/polls/answer/6a0e794e-6c6f-4d56-ae1e-f15042f89747
-authorization: {{tokenAdmin}}

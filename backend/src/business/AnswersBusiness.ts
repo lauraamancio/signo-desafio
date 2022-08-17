@@ -92,35 +92,4 @@ export default class AnswersBusiness {
             throw new BaseError(400, error.message)
         }
     }
-
-    public async deleteAllAnswers(id: string, token: string) {
-        try {
-            if (!id || !token) {
-              throw new BaseError(422, "Missing id or token");
-            }
-      
-            const validId = await this.pollData.findByID(id);
-            if (!validId) {
-              throw new BaseError(404, "Poll not found");
-            }
-      
-            const validToken = this.authenticator.getData(token);
-            if (!validToken.id) {
-              throw new BaseError(401, "Invalid token, please check login");
-            }
-      
-            const user = await this.userData.findByID(validToken.id)
-            if(user.getRole() === UserRole.ADMIN){
-              await this.answersData.deleteAllAnswers(id);
-            }else{
-              if(user.getId() !== validId.getCreatorId()) {
-                throw new BaseError(403, "You can't delete others Poll")
-              }else{
-                await this.answersData.deleteAllAnswers(id)
-              }
-            }
-          } catch (error: any) {
-            throw new BaseError(400, error.message);
-          }
-    }
 }
