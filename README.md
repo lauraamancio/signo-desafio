@@ -81,11 +81,11 @@ Página de Login     | Página de Cadastro
 
 Feed     | Página de votação (fora do período)
 :------------------:|:--------------------:
-![Feed](https://user-images.githubusercontent.com/98964160/184972841-6c0aeea5-3f5b-4711-98f7-72f82b37b501.png) | ![Página de votação (fora do período)](https://user-images.githubusercontent.com/98964160/185167641-6217fb30-72d2-4435-855a-4df3687685c7.png)
+![Feed](https://user-images.githubusercontent.com/98964160/184972841-6c0aeea5-3f5b-4711-98f7-72f82b37b501.png) | ![Página de votação (fora do período)](https://user-images.githubusercontent.com/98964160/185168442-dd2f4a9a-b098-43fc-baef-1be32c7c70e5.png)
 
 Página de votação (dentro do período)     | Editar Enquete
 :------------------:|:--------------------:
-![Página de votação (dentro do período)](https://user-images.githubusercontent.com/98964160/185166610-6b9f9dde-b1b7-4a71-8355-26d1df306b7d.png) | ![Editar Enquete](https://user-images.githubusercontent.com/98964160/185162509-d0ef22af-b372-4dad-b148-7d55c0dd3f0a.png)
+![Página de votação (dentro do período)](https://user-images.githubusercontent.com/98964160/185166610-6b9f9dde-b1b7-4a71-8355-26d1df306b7d.png) | ![Editar Enquete](https://user-images.githubusercontent.com/98964160/185169093-3e76faec-0bec-4b72-96fb-d3a9ca2fe08a.png)
 
 <br>
 
