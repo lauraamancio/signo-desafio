@@ -30,25 +30,10 @@ const EditPollPage = () => {
       end_date
   }
 
-    let formatedEndMonth
-    let formatedStartMonth
-    let startMonth = new Date(poll[0].start_date).getMonth() + 1
-    let endMonth = new Date(poll[0].end_date).getMonth() + 1
-    if(startMonth < 10){
-      formatedStartMonth = "0" + startMonth
-    }else{
-      formatedStartMonth = startMonth
-    }
-    if(endMonth < 10){
-      formatedEndMonth = "0" + startMonth
-    }else{
-      formatedEndMonth = endMonth
-    }
-
     const newStartDate = new Date(poll[0].start_date)
     const newEndDate = new Date(poll[0].end_date)
-    const startDateFormated = ((newStartDate.getDate())) + "-" + formatedStartMonth + "-" + newStartDate.getFullYear()
-    const endDateFormated = ((newEndDate.getDate())) + "-" + formatedEndMonth + "-" + newEndDate.getFullYear()
+    const startDateFormated = ((newStartDate.getDate())) + "-" + (newStartDate.getMonth() +1) + "-" + newStartDate.getFullYear()
+    const endDateFormated = ((newEndDate.getDate())) + "-" + (newEndDate.getMonth() +1) + "-" + newEndDate.getFullYear()
 
     const getPoll = async() => {
       await axios.get(`${BASE_URL}/polls/${params.id}`, headers)
