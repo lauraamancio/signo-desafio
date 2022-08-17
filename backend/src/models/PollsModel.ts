@@ -11,8 +11,8 @@ export interface InputEditPollDTO {
 }
 export interface InputEditPollBDDTO {
     title?: string,
-    start_date?: Date,
-    end_date?: Date
+    start_date?: Date | string,
+    end_date?: Date | string
 }
 
 export class PollsModel {
@@ -20,8 +20,8 @@ export class PollsModel {
         private id: string,
         private creator_id: string,
         private title: string,
-        private start_date: Date,
-        private end_date: Date
+        private start_date: Date | string,
+        private end_date: Date | string
     ){}
 
     public getId() {
