@@ -18,7 +18,7 @@ export default class PollsBusiness {
   public async createPoll(input: InputPollDTO, token: string) {
     try {
       const { title, start_date, end_date } = input;
-
+      console.log(start_date)
       if (!token) {
         throw new BaseError(404, "Token not found, please check login");
       }
@@ -56,17 +56,14 @@ export default class PollsBusiness {
         throw new BaseError(400, "Invalid date");
       }
 
-      start_dateFormat.setDate(start_dateFormat.getDate() +1)
-      end_dateFormat.setDate(end_dateFormat.getDate() +1)
-
       const id = this.idGenerator.generate();
 
       const newPoll = new PollsModel(
         id,
         validToken.id,
         title,
-        start_dateFormat,
-        end_dateFormat
+        start_date,
+        end_date
       );
 
       await this.pollsData.createPoll(newPoll);
@@ -80,21 +77,6 @@ export default class PollsBusiness {
       const { title } = input;
       let { start_date, end_date } = input;
 
-      if(start_date && end_date){
-        const [dayStart, monthStart, yearStart] = start_date.split("/");
-          const start_dateFormat = new Date(
-            `${yearStart}-${monthStart}-${dayStart}`
-          )
-          const [dayEnd, monthEnd, yearEnd] = end_date.split("/");
-          const end_dateFormat = new Date(
-            `${yearEnd}-${monthEnd}-${dayEnd}`
-          )
-
-          if(start_dateFormat > end_dateFormat || end_dateFormat < start_dateFormat){
-            throw new BaseError(400,"Invalid date")
-            
-          }
-      }
       if (!token) {
         throw new BaseError(404, "Token not found, please check login");
       }
@@ -106,9 +88,9 @@ export default class PollsBusiness {
       if (!validPoll) {
         throw new BaseError(404, "Poll not found");
       }
-
+      let startDB = validPoll.getStartDate() as Date
+      let endDB = validPoll.getEndDate() as Date
       const user = await this.userData.findByID(validToken.id);
-      const ceratorId = validPoll.getCreatorId();
 
       if (user.getRole() === UserRole.ADMIN) {
         const newInput: InputEditPollBDDTO = {
@@ -120,30 +102,33 @@ export default class PollsBusiness {
           let start_dateFormat = new Date(
             `${yearStart}-${monthStart}-${dayStart}`
           );
+          
           if (
             start_dateFormat.setUTCHours(0, 0, 0, 0) <
-            new Date().setUTCHours(0, 0, 0, 0)
+            new Date().setUTCHours(0, 0, 0, 0) || 
+            start_dateFormat.setUTCHours(0, 0, 0, 0) > 
+            endDB.setUTCHours(0,0,0,0)
           ) {
             throw new BaseError(400, "Invalid date");
           }
-          start_dateFormat.setDate(start_dateFormat.getDate() +1)
-          newInput.start_date = start_dateFormat
+          newInput.start_date = start_date
         }
 
         if (end_date) {
           const [dayEnd, monthEnd, yearEnd] = end_date.split("/");
           let end_dateFormat = new Date(
             `${yearEnd}-${monthEnd}-${dayEnd}`
-          );
+          )
 
           if (
             end_dateFormat.setUTCHours(0, 0, 0, 0) <
-            new Date().setUTCHours(0, 0, 0, 0)
+            new Date().setUTCHours(0, 0, 0, 0) || 
+            end_dateFormat.setUTCHours(0, 0, 0, 0) <
+            startDB.setUTCHours(0,0,0,0)
           ) {
             throw new BaseError(400, "Invalid date");
           }
-          end_dateFormat.setDate(end_dateFormat.getDate() +1)
-          newInput.end_date = end_dateFormat;
+          newInput.end_date = end_date;
         }
 
         await this.pollsData.editPoll(newInput, id);
@@ -163,11 +148,13 @@ export default class PollsBusiness {
 
           if (
             start_dateFormat.setUTCHours(0, 0, 0, 0) <
-            new Date().setUTCHours(0, 0, 0, 0)
+            new Date().setUTCHours(0, 0, 0, 0) || 
+            start_dateFormat.setUTCHours(0, 0, 0, 0) > 
+            endDB.setUTCHours(0,0,0,0)
           ) {
             throw new BaseError(400, "Invalid date");
           }
-          newInput.start_date = start_dateFormat;
+          newInput.start_date = start_date
         }
 
         if (end_date) {
@@ -178,11 +165,13 @@ export default class PollsBusiness {
 
           if (
             end_dateFormat.setUTCHours(0, 0, 0, 0) <
-            new Date().setUTCHours(0, 0, 0, 0)
+            new Date().setUTCHours(0, 0, 0, 0) || 
+            end_dateFormat.setUTCHours(0, 0, 0, 0) <
+            startDB.setUTCHours(0,0,0,0)
           ) {
             throw new BaseError(400, "Invalid date");
           }
-          newInput.end_date = end_dateFormat;
+          newInput.end_date = end_date
         }
 
         await this.pollsData.editPoll(newInput, id);

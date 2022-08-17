@@ -44,10 +44,10 @@ export default class AnswersBusiness {
                 throw new BaseError(400, "You already voted in this Poll")
             }
             
-            const validPollStartDate: number = validPoll.getStartDate().setUTCHours(0, 0, 0, 0)
-            const validPollEndDate: number = validPoll.getEndDate().setUTCHours(0, 0, 0, 0)
+            const pollStartDate = validPoll.getStartDate() as Date
+            const pollEndDate = validPoll.getEndDate() as Date
 
-            if(validPollEndDate < new Date().setUTCHours(0, 0, 0, 0) || validPollStartDate > new Date().setUTCHours(0, 0, 0, 0)){
+            if(pollEndDate.setUTCHours(0,0,0,0) < new Date().setUTCHours(0, 0, 0, 0) || pollStartDate.setUTCHours(0,0,0,0) > new Date().setUTCHours(0, 0, 0, 0)){
                 throw new BaseError(400, "You can't vote in this poll, check the start and end date.")
             }
 
