@@ -81,7 +81,7 @@ Página de Login     | Página de Cadastro
 
 Feed     | Página de votação (fora do período)
 :------------------:|:--------------------:
-![Feed](https://user-images.githubusercontent.com/98964160/184972841-6c0aeea5-3f5b-4711-98f7-72f82b37b501.png) | ![Página de Votação (fora do período)](https://user-images.githubusercontent.com/98964160/184973154-75fdb70d-b04f-4ead-9aa0-a36f9ddcd02b.png)
+![Feed](https://user-images.githubusercontent.com/98964160/184972841-6c0aeea5-3f5b-4711-98f7-72f82b37b501.png) | ![Página de votação (fora do período)](https://user-images.githubusercontent.com/98964160/185167641-6217fb30-72d2-4435-855a-4df3687685c7.png)
 
 Página de votação (dentro do período)     | Editar Enquete
 :------------------:|:--------------------:
