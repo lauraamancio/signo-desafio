@@ -34,7 +34,7 @@ const VotePage = () => {
       createVote(vote, params.id, headers, getVotes)
     }
 
-    const [discordo, concordo_parc, nao_sei, concordo] = votes
+    const [concordo, concordo_parc, discordo, nao_sei] = votes
 
     return(
         <MainContainer>
