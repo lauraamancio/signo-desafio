@@ -20,6 +20,7 @@ export const PollCard = styled.div`
         display: flex;
         flex-direction: row;
         width: 50vw;
+        margin-top: 0;
     }
 `
 

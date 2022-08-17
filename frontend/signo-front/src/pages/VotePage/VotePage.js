@@ -5,7 +5,7 @@ import useRequestData from "../../hooks/UseRequestData"
 import {BASE_URL} from "../../constants/urls"
 import { Button } from "@material-ui/core"
 import { createVote, deletePoll} from "../../services/polls"
-import { goBack, goToEditPage} from "../../routes/coordinator"
+import { goBack, goToEditPage, goToFeedPage} from "../../routes/coordinator"
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { Icons, MainContainer, OutDateVote, TitleCard, VoteCard, VoteContainer } from "./styled"
@@ -77,7 +77,7 @@ const VotePage = () => {
              </div>
             }
           </VoteContainer>
-          <Button variant={"text"} color={"primary"} onClick={() => {goBack(navigate)}}>Voltar</Button>
+          <Button variant={"text"} color={"primary"} onClick={() => {goToFeedPage(navigate)}}>Voltar</Button>
         </MainContainer>
     )
 }

@@ -1,6 +1,6 @@
 import axios from "axios"
 import {BASE_URL} from "../constants/urls"
-import { goToFeedPage } from "../routes/coordinator"
+import { goToFeedPage, goToVotePage } from "../routes/coordinator"
 
 export const createPoll = (body, clear, headers, setIsLoading) => {
     setIsLoading(true)
@@ -45,7 +45,7 @@ export const editPoll = (body, id, headers, navigate) => {
     axios.put(`${BASE_URL}/polls/${id}`, body, headers)
     .then((res) => {
         alert(res.data.message)
-        goToFeedPage(navigate)
+        goToVotePage(navigate, id)
     })
     .catch((err) => {
         alert(err.response.data.message)
