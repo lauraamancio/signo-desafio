@@ -27,7 +27,7 @@ authorization: {{token}}
     "end_date": "16/08/2022"
 }
 ### ANSWER POLL
-POST http://localhost:3003/polls/693a0c4e-ff40-4f70-8b35-3ba9c0f3a309
+POST http://localhost:3003/polls/26ef23ac-ab8c-4c6f-8693-2a2af87093ad
 Content-Type: application/json
 authorization: {{token}}
 

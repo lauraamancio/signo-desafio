@@ -95,7 +95,28 @@ export default class PollsBusiness {
       if (user.getRole() === UserRole.ADMIN) {
         const newInput: InputEditPollBDDTO = {
           title,
-        };
+        }
+
+        if(start_date && end_date) {
+          const [dayStart, monthStart, yearStart] = start_date.split("/");
+          let start_dateFormat = new Date(
+            `${yearStart}-${monthStart}-${dayStart}`
+          );
+          const [dayEnd, monthEnd, yearEnd] = end_date.split("/");
+          let end_dateFormat = new Date(
+            `${yearEnd}-${monthEnd}-${dayEnd}`
+          )
+          if (
+            start_dateFormat.setUTCHours(0, 0, 0, 0) <
+            new Date().setUTCHours(0, 0, 0, 0) || 
+            start_dateFormat.setUTCHours(0, 0, 0, 0) > 
+            end_dateFormat.setUTCHours(0,0,0,0)
+          ) {
+            throw new BaseError(400, "Invalid date");
+          }
+          newInput.start_date = start_date
+          newInput.end_date = end_date
+        }
 
         if (start_date) {
           const [dayStart, monthStart, yearStart] = start_date.split("/");
