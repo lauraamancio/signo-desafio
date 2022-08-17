@@ -119,7 +119,7 @@ export default class PollsBusiness {
           newInput.end_date = end_date
         }
 
-        if (start_date) {
+        if (start_date && !end_date) {
           const [dayStart, monthStart, yearStart] = start_date.split("/");
           let start_dateFormat = new Date(
             `${yearStart}-${monthStart}-${dayStart}`
@@ -136,7 +136,7 @@ export default class PollsBusiness {
           newInput.start_date = start_date
         }
 
-        if (end_date) {
+        if (end_date && !start_date) {
           const [dayEnd, monthEnd, yearEnd] = end_date.split("/");
           let end_dateFormat = new Date(
             `${yearEnd}-${monthEnd}-${dayEnd}`

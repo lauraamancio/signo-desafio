@@ -6,7 +6,6 @@ export default class PollsDatabase extends BaseDatabase {
     protected TABLE_NAME = "polls_signo"
 
     public async createPoll(input: PollsModel): Promise<void> {
-        console.log(input)
         try {
             await this.getConnection()
             .insert(input)
