@@ -120,7 +120,7 @@ export default class PollsBusiness {
         }
 
         if (start_date && !end_date) {
-          const [dayStart, monthStart, yearStart] = start_date.split("/");
+          const [dayStart, monthStart, yearStart] = start_date.split("/")
           let start_dateFormat = new Date(
             `${yearStart}-${monthStart}-${dayStart}`
           );
