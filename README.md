@@ -65,10 +65,10 @@ Além disso, é nesta página que estão as opções de Editar e Deletar uma enq
 - ***Editar Enquete***: ao clicar na opção de editar, você é redirecionado para esta página. Nela os campos de título, data de início e data de término estão com as informações atuais da enquete, logo o que você mudar, será alterado (lembrando que se você for um usuário NORMAL, poderá apenas editar as suas próprias enquetes).
 
 ### :books: Bibliotecas utilizadas:
-- [axios](https://github.com/axios/axios)
-- [react-router-dom](https://v5.reactrouter.com/)
-- [styled-components](https://styled-components.com/)
-- [material-ui](https://mui.com/pt/)
+- axios
+- react-router-dom
+- styled-components
+- material-ui
 
 ### 🔗 Link Surge: 
 - Acesse o site [clicando aqui.](https://laura-amancio-signo.surge.sh/)
