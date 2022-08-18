@@ -1,1 +1,1 @@
-export const BASE_URL = "https://signo-desafio-lauraamancio.herokuapp.com"
+export const BASE_URL = "https://lauraamancio-signo.herokuapp.com"
